@@ -1,0 +1,98 @@
+.side_nav {
+    background-color: #fff;
+    width: 15em;
+    min-height: 100vh;
+    padding: 15px;
+    font-family: 'overpass', sans-serif;
+    font-size: 1.2rem;
+
+    .brand_heading {
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+
+        .brand {
+            margin-left: 9px;
+            font-size: 2rem;
+            font-family: 'mukta', sans-serif;
+        }
+    }
+
+    .user_socialmedia_accordion {
+        border: 0px;
+        background-color: #fff;
+        border-radius: 8px;
+        margin: 30px 0px 0px 20px;
+        
+        .user_social {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            
+            .user_mail {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                font-size: 1.2rem;
+
+                p {
+                    font-weight: 500;
+
+                    .instagram {
+                        font-size: 1rem;
+                        color: grey;
+                    }
+                }
+
+                .forwar_bacward_icons {
+                    margin-left: auto;
+                }
+            }
+        }
+        .medias {
+            list-style: none;
+
+            li {
+                margin-top: 8px;
+            }
+        }
+    }
+    .navigation_links {
+        margin-top: 20px;
+        margin-bottom: 40px;
+        .dash {
+            text-decoration: none;
+            color: #775DA6;
+
+            .lists {
+                list-style: none;
+                padding: 10px 15px;
+
+                &:hover {
+                    background-color: #F1F5FE;
+                    border-radius: 15px;
+                }
+            }
+
+        }
+    }
+    
+    .navigation_links1 {
+        margin-top: 20px;
+        .dash {
+            text-decoration: none;
+            color: #775DA6;
+
+            .lists {
+                list-style: none;
+                padding: 10px 15px;
+
+                &:hover {
+                    background-color: #F1F5FE;
+                    border-radius: 15px;
+                }
+            }
+
+        }
+    }
+}

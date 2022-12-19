@@ -1,0 +1,175 @@
+.dash_nav {
+    font-family: 'overpass', sans-serif;
+    .brandName {
+        font-size: 30px;
+        font-weight: 500;
+        color: #363b64;
+    }
+
+    .navForm {
+        margin-left: auto;
+        margin-top: 10px;
+
+        .search_bar {
+            display: flex;
+            align-items: center;
+            border: 0px;
+            padding: 5px;
+            border-radius: 9px;
+            width: 350px;
+            background-color: white;
+
+            .form-control {
+                border: 0px;
+                background-color: transparent;
+            }
+        }
+    }
+    .alerm {
+        padding: 3px;
+        border: 0px;
+        background-color: white;
+        margin: -3px 10px 0px;
+        border-radius: 10px;
+    }
+
+    .dash_media {
+        background-color: white;
+        border: 0px;
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        border-radius: 10px;
+
+        .img_media {
+            margin: 3px;
+        }
+
+        .passport {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+    @media (min-width: 998px) and (max-width: 1200px) {
+        .brandName {
+            font-size: 25px;
+            font-weight: 400;
+            color: #363b64;
+        }
+        .navForm {
+            margin-left: auto;
+            margin-top: 10px;
+            
+            .search_bar {
+                display: flex;
+                align-items: center;
+                border: 0px;
+                padding: 4px;
+                border-radius: 9px;
+                width: 300px;
+                background-color: white;
+
+                .form-control {
+                    border: 0px;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 997px) {
+        .brandName {
+            font-size: 20px;
+            font-weight: 400;
+            color: #363b64;
+        }
+        .navForm {
+            margin-left: auto;
+            margin-top: 10px;
+            
+            .search_bar {
+                display: flex;
+                align-items: center;
+                border: 0px;
+                padding: 3px;
+                border-radius: 9px;
+                width: 250px;
+                background-color: white;
+
+                .form-control {
+                    border: 0px;
+                    background-color: transparent;
+                }
+            }
+        }
+        .dash_media {
+            background-color: white;
+            border: 0px;
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            border-radius: 10px;
+            margin: 3px;
+
+            .passport {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .brandName {
+            font-size: 15px;
+            font-weight: 600;
+            color: #363b64;
+        }
+        .navForm {
+            margin-left: auto;
+            margin-top: 10px;
+                
+            .search_bar {
+                display: flex;
+                align-items: center;
+                border: 0px;
+                padding: 2px;
+                border-radius: 9px;
+                width: 200px;
+                background-color: white;
+
+                .form-control {
+                    border: 0px;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .dash_media {
+            background-color: white;
+            border: 0px;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            border-radius: 10px;
+            margin: 3px;
+
+            .passport {
+                width: 30px;
+                height: 30px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+.tooltip {
+    --bs-tooltip-bg: white;
+    --bs-tooltip-color: #363b64;
+    border: 0px;
+    border-radius: 20px;
+}

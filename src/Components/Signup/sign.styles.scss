@@ -1,0 +1,189 @@
+.Sign_up {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .sign_row {
+
+        .sign_col1 {
+            margin: auto;
+            justify-items: center;
+            vertical-align: middle;
+            padding-top: 3%;
+            padding-left: 10%;
+            .name_heading {
+                margin-bottom: 25px;
+                font-family: 'Inter', 'Roboto';
+
+                .ic_icon {
+                    color: #775DA6;
+                    margin-right: 6px;
+                    width: 50px;
+                    height: 50px;
+                }
+                .name {
+                    font-size: 2.5rem;
+                    font-weight: 500;
+                }
+            }
+            .welcome_back {
+                font-family: 'karla', 'Roboto';
+                h2 {
+                    font-size: 2.5rem;
+                    font-weight: 400;
+                }
+            }
+            .text {
+                margin-top: 25px;
+                color: #646464;
+                font-size: 1.2rem;
+                font-family: 'karla', 'Roboto';
+            }
+        }
+        .sign_col2 {
+            display: flex;
+            justify-content: center;
+            .sign_form {
+                border-radius: 10px;
+                box-shadow: 0px 10px 15px -8px rgba(0, 0, 0, 0.63);
+                // width: 450px;
+                font-size: 1rem;
+                min-width: 20em;
+                max-width: 25em;
+                padding: 5px 10px;
+                .sign_card_body {
+                    
+                    a {
+                        text-decoration: none;
+                    }
+                    h2, p {
+                        font-weight: 500;
+                    }
+                    .signup_link {
+                        color: #775DA6;
+                        font-weight: 500;
+                    }
+                    
+                    .card_form_group {
+                        margin-top: 15px;
+                        margin-bottom: 5px;
+                        .form-control{
+                            border: 1px solid #775DA6;
+                            // padding: 12px;
+                        }
+                        .form-control:focus {
+                            width: 98%;
+                            background-color: white;
+                            border: 0px;
+                            // padding: 12px;
+                            box-shadow: none;
+                            outline: 2px solid #775DA6;
+                        }
+                        .form-control:focus{
+                            border: none;
+                        }
+                    }
+
+                    .card_form_group1 {
+                            margin-top: 15px;
+                            margin-bottom: 15px;
+
+                        .i_group {
+                            display: flex;
+                            align-items: center;
+                            vertical-align: middle;
+                            // width: 100%;
+                            border: 1px solid #775DA6;
+                            border-radius: 6px;
+                            
+                            .input-input:focus {
+                                box-shadow: none;
+                                border-color: white;
+                            }
+                            .form-control {
+                                width: 80%;
+                                border: 0px;
+                                // padding: 12px;
+                                border-right: 0px;
+                            }
+
+                            .eye {
+                                margin: 10px;
+                                color: grey
+                            }
+                        }
+                        .i_group:hover{
+                            outline: 1.5px solid #775DA6;;
+                        }
+                    }
+                    .f_password {
+                        color: #775DA6;
+                        font-weight: 500;
+                        text-decoration: none;
+                    }
+
+                    .form_submit_btn {
+                        margin-top: 10px;
+                        border-radius: 10px;
+                        padding: 10px;
+                        width: 100%;
+                        background-color: rgb(119, 93, 166);
+                        color: white;
+                    }
+
+                    .line {
+                        display: flex;
+                        margin: 10px 0px;
+                    }
+
+                    .auth-btn {
+                        align-items: center;
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 10px;
+
+                        .git {
+                            background-color: white;
+                            padding: 9px;
+                            color: black;
+                            font-weight: 500;
+                            border: 0px;
+                            width: 100%;
+                        }
+                        .git:hover {
+
+                            border-radius: 10px;
+                            box-shadow: -3px 5px 15px -8px rgb(119, 93, 166, 0.63);
+                            -webkit-box-shadow: -2px 1px 13px -4px rgb(119, 93, 166, 0.63);
+                            -moz-box-shadow: -2px 1px 13px -4px rgb(119, 93, 166, 0.63);
+                        }
+                    }
+                    .c_write {
+                        color: grey;
+                        
+                        .c_color {
+                            color: #775DA6;
+                        }
+                    }
+                }
+
+            }
+        }
+        @media (max-width: 767px) {
+            .sign_col1 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .col1_inner {
+                    margin: 0px auto;
+                    text-align: center;
+                }
+            }
+            .sign_col2 {
+                margin-top: 50px;
+                justify-content: center;
+                display: flex;
+            }
+        }
+    }
+}
