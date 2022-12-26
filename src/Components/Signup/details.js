@@ -1,40 +1,41 @@
 import React, { useState } from "react";
-import { Button, Col, Row, Card, CardBody, Form, FormGroup, InputGroup, Input, FormText } from "reactstrap";
+import { Button, Col, Row, Card, CardBody, Form, FormGroup, Input, } from "reactstrap";
 import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
+import {  Navigate } from "react-router-dom";
 
-import { AiFillEye, AiFillGithub } from "react-icons/ai";
-import { Link, Navigate } from "react-router-dom";
-
-const SignUp = () => {
+const Details = () => {
     const [statedType, setstatedType] = useState(false);
-    const [ value, setValue ] = useState({username:"", email: "", password:""});
+    const [ value, setValue ] = useState({fullname: "", twittername: "", githubname: "", facebookname: ""});
+    const [ file, setFile ] = useState({pics: []});
     const [ respo, setRespo ] = useState({user: "", error: ""})
     const type = statedType ? 'text' : 'password';
 
-    const postUserDetails = async () => {
-        const v = {
-            username: value.username,
-            email: value.email,
-            password: value.password
-        }
-        fetch("https://localhost:3443/users/signup", {
-            method: 'POST',
-            body: JSON.stringify(v),
-            headers: {
-                "Content-Type": "application/json"
-            }
+    const onFileUpload = () => {
+        const formData = new FormData();
+
+        formData.append('pics', file.pics)
+        formData.append("fullname", value.fullname);
+        formData.append("twittername", value.twittername);
+        formData.append("githubname", value.githubname);
+        formData.append("facebookname", value.facebookname); 
+
+        fetch("https://localhost:3443/upload", {
+            method: "POST",
+            body: formData
         })
         .then(resp => resp.json())
         .then(resp => {
+            console.log(resp)
             setRespo({user: resp.success, error: null});
         })
         .catch(err => {
         setRespo({user: false, error: err})})
     }
+    console.log(file, value)
     const handleSubmit = (event) => {
         event.preventDefault();
-        postUserDetails()
+        onFileUpload()
     }
     const handleChange = (event) => {
         const target = event.target;
@@ -70,30 +71,28 @@ const SignUp = () => {
                 <Col sm="12" md="6" lg="6" className="sign_col2">
                     <Card className="sign_form">
                         <CardBody className="sign_card_body">
-                            {respo.user && (<Navigate to="/details" />)}
-                            <h2>Sign Up</h2>
-                            <p>Do you have an account? <Link to="/signIn" className="signup_link"> sign in</Link></p>
+                            {respo.user && (<Navigate to="/signin" />)}
+                            <h2 style={{fontSize: "1em"}}>Please fill the form below</h2>
                             <Form onSubmit={handleSubmit}>
                                 <FormGroup className="card_form_group">
-                                    <Input type="text" placeholder="Username" className="input-input" name="username" onChange={handleChange} required />
+                                    <Input type="text" placeholder="Fullname" className="input-input" name="fullname" onChange={handleChange}  />
                                 </FormGroup>
                                 <FormGroup className="card_form_group">
-                                    <Input type="email" placeholder="Enter your email" className="input-input" name="email" onChange={handleChange}  required />
+                                    <Input type="text" placeholder="Twitter username" className="input-input" name="twittername" onChange={handleChange}   />
                                 </FormGroup>
-                                <FormGroup className="card_form_group1">
-                                    <InputGroup className="i_group">
-                                        <Input type={type} placeholder="password" className="input-input" name="password" onChange={handleChange} required />
-                                        <AiFillEye className="eye" onClick={() => setstatedType(!statedType)}/>
-                                    </InputGroup>
+                                <FormGroup className="card_form_group">
+                                    <Input type="text" placeholder="github username" className="input-input" name="githubname" onChange={handleChange}   />
                                 </FormGroup>
-                                <div><FormText><a href="#" className="f_password">Forgot password?</a></FormText></div>
+                                <FormGroup className="card_form_group">
+                                    <Input type="text" placeholder="facebook username" className="input-input" name="facebookname" onChange={handleChange}   />
+                                </FormGroup>
+                                <FormGroup className="card_form_group">
+                                    <Input type="file" placeholder="Upload your passport" className="input-input" name="pics" onChange={(e) => setFile(p => {return {...p, pics: e.target.files[0]}})}  required />
+                                </FormGroup>
                                 <Button type="submit" value="submit" className="form_submit_btn">Submit</Button>
                             </Form>
                             <div className="line">
-                                <hr style={{width:"50%", marginRight: "4px"}}/> or <hr style={{width:"50%", marginLeft: "4px"}}/>
-                            </div>
-                            <div className="auth-btn">
-                                <Button className="git"><AiFillGithub  style={{width: "30px", height: "30px"}}/> Continue with GitHub</Button>
+                                <hr style={{width:"50%", marginRight: "4px"}}/>  <hr style={{width:"50%", marginLeft: "4px"}}/>
                             </div>
                             <hr />
                             <div className="c_write">
@@ -107,4 +106,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default Details;

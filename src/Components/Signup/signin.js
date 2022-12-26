@@ -3,7 +3,7 @@ import { Button, Col, Row, Card, CardBody, Form, FormGroup, InputGroup, Input, F
 import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
-import { json, Link, Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const SignIn = () => {
     const [statedType, setstatedType] = useState(false);
@@ -29,27 +29,26 @@ const SignIn = () => {
         setRespo({user: false, error: err})})
     }
     
-    const postUserDetails = async () => {
+    const postUserDetails = () => {
         const v = {
             username: value.username,
             password: value.password
         }
-            const resp = await fetch("https://localhost:3443/users/signin", {
-                method: 'POST',
-                body: JSON.stringify(v),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(resp => resp.json())
-            .then((resp) => {
-                if (resp.success) {
-                    console.log(resp.token);
-                    localStorage.setItem("token", resp.token);
-                }
-                setRespo({user: resp.success, error: null});
-            }).catch(err => {
-            setRespo({user: false, error: err})})
+        fetch("https://localhost:3443/users/signin", {
+            method: 'POST',
+            body: JSON.stringify(v),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(resp => resp.json())
+        .then((resp) => {
+            if (resp.success) {
+                localStorage.setItem("token", resp.token);
+            }
+            setRespo({user: resp.success, error: null});
+        }).catch(err => {
+        setRespo({user: false, error: err})})
     }
 
     const handleSubmit = (event) => {

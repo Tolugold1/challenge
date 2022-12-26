@@ -16,8 +16,6 @@ const Nav = () => {
 
     useEffect(() => {
         const bearer = " Bearer " + localStorage.getItem("token");
-        const t = localStorage.getItem("token");
-        console.log(t);
         fetch("https://localhost:3443/users/user", {
             headers: {
                 "Content-Type": "application/json",
@@ -26,11 +24,9 @@ const Nav = () => {
         })
         .then(resp => resp.json())
         .then(resp => {
-            console.log(resp)
             setUserName(prev => ({...prev, name: resp.username}))
         })
     }, [])
-    console.log(userName)
     return(
         <div className="dash_nav">
             <Navbar light>
