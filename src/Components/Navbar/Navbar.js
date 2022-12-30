@@ -45,7 +45,6 @@ const Nav = () => {
         })
         .then(resp => resp.json())
         .then((r) => {
-            console.log(r)
             setProfilePicture(r.status)
         })
     }

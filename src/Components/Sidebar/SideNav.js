@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./sideNav.styles.scss";
 import { Collapse } from "reactstrap";
 import { GiSlumberingSanctuary } from "react-icons/gi";
@@ -12,10 +12,26 @@ import { Link, Navigate } from "react-router-dom";
 
 const SideNav = () => {
     const [collapse, setCollapse] = useState(false);
-    const [dashboard, setDashboard] = useState(false);
-    const [post, setPost] = useState(false);
-    const [challenge, setChallenge] = useState(false);
+    const [post, setPost] = useState([]);
 
+    useEffect(() => {
+        getUserDetails()
+    }, [])
+
+    const getUserDetails = () => {
+        const bearer = "Bearer " + localStorage.getItem("token");
+        fetch("https://localhost:3443/upload", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": bearer
+            }
+        })
+        .then(resp => resp.json())
+        .then((r) => {
+            setPost(r.status)
+        })
+    }
+    console.log(post)
 
     const [ user, setUser ] = useState(false);
 
@@ -48,11 +64,15 @@ const SideNav = () => {
                     </div>
                 </div>
                 <Collapse isOpen={collapse} >
-                    <ul className="medias">
-                        <li>name@twitter</li>
-                        <li>name@github</li>
-                        <li>name@facbook</li>
-                    </ul>
+                    {post.map((data) => {
+                        return(
+                            <ul className="medias">
+                                <li>{`${data.twittername}@twitter`}</li>
+                                <li>{`${data.githubname}@gitHub`}</li>
+                                <li>{`${data.facebookname}@facebook`}</li>
+                            </ul>
+                        )
+                    })}
                 </Collapse>
             </div>
 
