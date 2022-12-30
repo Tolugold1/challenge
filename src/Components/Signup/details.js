@@ -12,6 +12,7 @@ const Details = () => {
     const type = statedType ? 'text' : 'password';
 
     const onFileUpload = () => {
+        const bearer = "Bearer " + localStorage.getItem('token');
         const formData = new FormData();
 
         formData.append('pics', file.pics)
@@ -22,7 +23,10 @@ const Details = () => {
 
         fetch("https://localhost:3443/upload", {
             method: "POST",
-            body: formData
+            body: formData,
+            headers: {
+                "Authorization": bearer
+            }
         })
         .then(resp => resp.json())
         .then(resp => {
@@ -32,7 +36,7 @@ const Details = () => {
         .catch(err => {
         setRespo({user: false, error: err})})
     }
-    console.log(file, value)
+    console.log(typeof file.pics)
     const handleSubmit = (event) => {
         event.preventDefault();
         onFileUpload()
@@ -71,7 +75,7 @@ const Details = () => {
                 <Col sm="12" md="6" lg="6" className="sign_col2">
                     <Card className="sign_form">
                         <CardBody className="sign_card_body">
-                            {respo.user && (<Navigate to="/signin" />)}
+                            {respo.user && (<Navigate to="/dashboard" />)}
                             <h2 style={{fontSize: "1em"}}>Please fill the form below</h2>
                             <Form onSubmit={handleSubmit}>
                                 <FormGroup className="card_form_group">

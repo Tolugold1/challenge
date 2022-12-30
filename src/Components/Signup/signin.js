@@ -9,9 +9,10 @@ const SignIn = () => {
     const [statedType, setstatedType] = useState(false);
     const [ value, setValue ] = useState({username:"", password:""});
     const [ respo, setRespo ] = useState({user: "", error: ""})
+    const [ check, setCheck ] = useState(false);
     const type = statedType ? 'text' : 'password';
 
-    const githubLogin =  async () => {
+/*     const githubLogin =  async () => {
         fetch("https://localhost:3443/users/auth/github/login", {
             headers: {
                 "Access-Control-Allow-Origin": "*"
@@ -27,7 +28,7 @@ const SignIn = () => {
             setRespo({user: resp.success, error: null});
         }).catch(err => {
         setRespo({user: false, error: err})})
-    }
+    } */
     
     const postUserDetails = () => {
         const v = {
@@ -51,9 +52,28 @@ const SignIn = () => {
         setRespo({user: false, error: err})})
     }
 
+    const validateProfileInfo = () => {
+        const bearer = "Bearer " + localStorage.getItem('token')
+        fetch("https://localhost:3443/upload", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": bearer
+            }
+        })
+        .then((resp) => resp.json())
+        .then((resp) => {
+            if (resp.success === true) {
+                setCheck(true)
+            } else {
+                setCheck(false)
+            }
+        })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        postUserDetails()
+        postUserDetails();
+        validateProfileInfo();
     }
     const handleChange = (event) => {
         const target = event.target;
@@ -90,7 +110,7 @@ const SignIn = () => {
                 <Col className="sign_col2"  sm="12" md="6" lg="6">
                     <Card className="sign_form">
                         <CardBody className="sign_card_body">
-                            {respo.user && ( <Navigate to="/dashboard" /> )}
+                            { check ? respo.user && ( <Navigate to="/dashboard" /> ) : respo.user && ( <Navigate to="/details" /> ) }
                             <h2>Sign In</h2>
                             <p>Don't have an account? <Link to="/signUp" className="signup_link"> sign up</Link></p>
                             <Form onSubmit={handleSubmit}>
@@ -109,7 +129,7 @@ const SignIn = () => {
                             <div className="line">
                                 <hr style={{width:"50%", marginRight: "4px"}}/> or <hr style={{width:"50%", marginLeft: "4px"}}/>
                             </div>
-                            <div className="auth-btn" onClick={githubLogin}>
+                            <div className="auth-btn" /* onClick={githubLogin} */>
                                 <Button className="git"><AiFillGithub  style={{width: "30px", height: "30px"}} /> Continue with GitHub</Button>
                             </div>
                             <hr />
