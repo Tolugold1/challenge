@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState } from "react";
 import Nav from "../Navbar/Navbar";
 import { Row, Col, Card, CardBody, Container } from "reactstrap";
 import { PieData } from "./pie";
@@ -16,7 +16,7 @@ import "./Dashboard.styles.scss";
 
 
 const DashboardPage = () => {
-    
+
     const [ pieData, setPieData ] = useState({
         labels: PieData.map((data) => data.label),
         datasets: [{

@@ -132,7 +132,7 @@
             margin-left: auto;
             margin-top: 10px;
                 
-            .search_bar {
+/*             .search_bar {
                 display: flex;
                 align-items: center;
                 border: 0px;
@@ -145,7 +145,7 @@
                     border: 0px;
                     background-color: transparent;
                 }
-            }
+            } */
         }
 
         .dash_media {
@@ -156,6 +156,7 @@
             padding: 3px;
             border-radius: 10px;
             margin: 3px;
+            cursor:pointer;
 
             .passport {
                 width: 30px;

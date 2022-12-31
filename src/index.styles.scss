@@ -1,12 +1,12 @@
 /* Box sizing rules */
-*,
+/* *,
 *::before,
 *::after {
     box-sizing: border-box;
-}
+} */
 
 /* Remove default margin */
-body,
+/* body,
 h1,
 h2,
 h3,
@@ -17,50 +17,50 @@ blockquote,
 dl,
 dd {
     margin: 0;
-}
+} */
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
+/* ul[role='list'],
 ol[role='list'] {
     list-style: none;
-}
+} */
 
 /* Set core root defaults */
-html:focus-within {
+/* html:focus-within {
     scroll-behavior: smooth;
-}
+} */
 
 /* Set core body defaults */
-body {
+/* body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
     background-color: #F9F9F9;
     padding: 0;
-}
+} */
 
 /* A elements that don't have a class get default styles */
-a:not([class]) {
+/* a:not([class]) {
     text-decoration-skip-ink: auto;
-}
+} */
 
 /* Make images easier to work with */
-img,
+/* img,
 picture {
     max-width: 100%;
     display: block;
-}
+} */
 
 /* Inherit fonts for inputs and buttons */
-input,
+/* input,
 button,
 textarea,
 select {
     font: inherit;
-}
+} */
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
     html:focus-within {
         scroll-behavior: auto;
     }
@@ -73,9 +73,9 @@ select {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-}
+} */
 
-.sr-only:not(:focus):not(:active) {
+/* .sr-only:not(:focus):not(:active) {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -83,22 +83,22 @@ select {
     position: absolute;
     white-space: nowrap;
     width: 1px;
-}
+} */
 
-#root{
+/* #root{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     // padding-inline: 2em;
-}
+} */
 
-@media (min-width: 768px) and (max-width: 979px) {
+/* @media (min-width: 768px) and (max-width: 979px) {
 
     .num,
     .comment_num,
     .share_num {
         font-size: 1rem;
     }
-}
+} */

@@ -31,7 +31,6 @@ const SideNav = () => {
             setPost(r.status)
         })
     }
-    console.log(post)
 
     const [ user, setUser ] = useState(false);
 
@@ -66,7 +65,7 @@ const SideNav = () => {
                 <Collapse isOpen={collapse} >
                     {post.map((data) => {
                         return(
-                            <ul className="medias">
+                            <ul className="medias" key={data._id}>
                                 <li>{`${data.twittername}@twitter`}</li>
                                 <li>{`${data.githubname}@gitHub`}</li>
                                 <li>{`${data.facebookname}@facebook`}</li>

@@ -3,9 +3,22 @@ import { Navbar, NavbarBrand, Form, FormGroup, InputGroup, Input, Media, Tooltip
 import { BiSearch } from "react-icons/bi";
 import { Buffer } from "buffer";
 import { IoMdNotifications } from "react-icons/io"
+import { useLocation  } from "react-router-dom";
 import "./Navbar.styles.scss";
 
 const Nav = () => {
+
+    const location = useLocation();
+    console.log(location.pathname);
+    let path = [ "/dashboard", "/challenge", "/post schedule" ];
+    let exactPath;
+    if (location.pathname == path[0]) {
+        exactPath = "Dashboard";
+    } else if (location.pathname == path[1]) {
+        exactPath = "Challenge";
+    } else if (location.pathname == path[2]) {
+        exactPath = "Post Schedule";
+    }
     
     const [ userName, setUserName ] = useState({name: ""})
     const [ show, setShow ] = useState(false);
@@ -49,12 +62,11 @@ const Nav = () => {
         })
     }
 
-    console.log(profilePicture);
     return(
         <div className="dash_nav">
             <Navbar light>
                 <div className="d-flex align-items-center">
-                    <NavbarBrand href="/dashboard" className="brandName">Dashboard </NavbarBrand><h5 style={{color: "#C1C5C8", marginTop: "15px", marginLeft: "-6px"}} className="d-none d-md-none d-lg-none d-xl-block">{month[monthString]} {day}, {year}</h5>
+                    <NavbarBrand href={`/${exactPath}`} className="brandName">{exactPath} </NavbarBrand><h5 style={{color: "#C1C5C8", marginTop: "15px", marginLeft: "-6px"}} className="d-none d-md-none d-lg-none d-xl-block">{month[monthString]} {day}, {year}</h5>
                 </div>
                 <Form className="navForm">
                     <FormGroup>
@@ -67,11 +79,11 @@ const Nav = () => {
                 <div className="alerm d-none d-md-none d-lg-block ">
                     <IoMdNotifications  style={{width: "40px", height: "40px"}}/>
                 </div>
-                {profilePicture.map((data) => {/* 
-                    const base64data = btoa(String.fromCharCode(...new Uint8Array(data.pics.data.data))) */
+                {profilePicture.map((data) => {
+
                     return(
                         <>
-                        <Media className="dash_media" id="userName" key={data}>
+                        <Media className="dash_media" id="userName" key={data._id}>
                             <Media left middle className="img_media">
                                 <Media object src={`data:${data.pics.contentType};base64,${Buffer.from(data.pics.data.data).toString('base64')}`} className="passport" alt="User image"></Media>
                             </Media>
@@ -79,7 +91,7 @@ const Nav = () => {
                                 <h4>User name</h4>
                             </Media>
                         </Media>
-                        <Tooltip className="media-tip" toggle={toggleShow} target="userName" placement="top" isOpen={show}>
+                        <Tooltip className="media-tip" toggle={toggleShow} target="userName" placement="top" isOpen={show} >
                             <h6>{userName.name}</h6>
                         </Tooltip>
                         </>
