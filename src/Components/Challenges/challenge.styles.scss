@@ -23,6 +23,41 @@
         .challenge_row {
             margin-top: 30px;
             align-items: center;
+            
+            .challenge_col1 {
+
+                .peer_card {
+                    padding: 5px;
+                    
+                    .peer_card_img {
+                        object-fit: cover;
+                        object-position: center;/* 
+                        width: 200px;
+                        height: 150px; */
+                    }
+                    .peer_card_body {
+                        
+                        display: flex;
+                        align-items: center;
+
+                        .ptitle {
+                            font-size: 1em;
+                            font-weight: 600;
+                        }
+                        .peer_card_description {
+                            font-size: .8em;
+                            font-weight: 500;
+                        }
+                        .peer_card_btn {
+                            display: flex;
+                            justify-content: center;
+                            .send_request {
+                                background-color: #363b64;
+                            }
+                        }
+                    }
+                }
+            }
 
             .challenge_col2 {
 

@@ -1,11 +1,35 @@
-import React from "react"
+import React, { useState } from "react"
 import SideNav from "../Sidebar/SideNav";
 import Nav from "../Navbar/Navbar";
+import { Buffer } from "buffer";
 import { BiSearch } from "react-icons/bi"
-import { Container, Row, Col, Card, Button, CardImg, Form, FormGroup, InputGroup, Input} from "reactstrap";
+import { Container, Row, Col, Card, CardTitle, CardBody, Button, CardImg, Form, FormGroup, InputGroup, Input} from "reactstrap";
 import "./challenge.styles.scss"
 
 const ChallengePage = () => {
+    const [ fullname, setFullname ] = useState({name: ""});
+    const [ peerProfilePics, setPeerProfilePics ] = useState([]);
+    const [ c, setC ] = useState(false);
+
+    const getAPeer = () => {/* 
+        const bearer = "Bearer " + localStorage.getItem("token");
+ */
+        fetch(`https://localhost:3443/upload/${fullname.name}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((resp) => resp.json())
+        .then((resp) => {
+            console.log(resp);
+            if (resp.success === true) {
+                setC(true);
+            }
+            console.log(resp.status)
+            setPeerProfilePics(resp.status);
+        }, (err) => console.log(err)).catch(err => console.log(err));
+    }
+
     return(
         <div className="challengeComponent">
             <div className="sidebar"><SideNav /></div>
@@ -15,11 +39,37 @@ const ChallengePage = () => {
                 </div>
                 <p className="h1">Challenge your peers</p>
                 <Row className="challenge_row">
-                    <Col sm="12" md="12" lg="8" className="challenge_col1">
-                        <Card>
-                            <CardImg className="challenge_img img-fluid" src={require("./img.jpeg")} alt="challenge image" />
-                        </Card>
-                    </Col>
+                    <Col sm="12" md="12" lg="8" className="challenge_col1" >
+                        {c ? <div>
+                                {
+                                    peerProfilePics.map((data, key) => {
+                                        return(
+                                            <Card className="peer_card" key={key}>
+                                                <CardBody className="peer_card_body">
+                                                    <div style={{marginRight: "10px"}}>
+                                                        <CardImg src={`data: ${data.pics.contentType};base64,${Buffer.from(data.pics.data.data).toString("base64")}`} alt="user profile picture" className="peer_card_img img-fluid" />
+                                                    </div>
+                                                   <div>
+                                                        <CardTitle className="ptitle">Name: {data.fullname}</CardTitle>
+                                                        <p className="peer_card_description">My name is {data.fullname} and am a programmer. I specializes in frontend web technologies. My github account user name is {data.githubname}. Follow me so we can work together on future projects.</p>
+                                                        <div className="peer_card_btn">
+                                                            <Button className="send_request">challenge</Button>
+                                                        </div>
+                                                   </div>
+                                                </CardBody>
+                                            </Card>
+                                            
+                                        )
+                                    })
+                                } </div>
+                            
+                            : 
+                                <Card style={{border: "0px"}}>
+                                    <CardImg className="challenge_img img-fluid" src={require("./img.jpeg")} alt="challenge image" />
+                                </Card>
+                        }
+                    </Col>{/* 
+                    <Col sm="12" md="12" lg="4"></Col> */}
                     <Col sm="12" md="12" lg="4" className="challenge_col2">
                         <p className="heading1">Do you know the person you want to send request to? search for the person in the search bar below</p>
                         <div className="challenge_form">
@@ -27,7 +77,7 @@ const ChallengePage = () => {
                                 <FormGroup>
                                     <InputGroup className="search_bar">
                                         <BiSearch />
-                                        <Input type="text" placeholder="Search..." className="input-input"></Input>
+                                        <Input type="text" placeholder="Search..." className="input-input" onKeyDown={(event) => {if (event.key === 'Enter'){event.preventDefault();console.log(event.key);getAPeer()}}} onChange={(event) => setFullname((prev) => {return {...prev, name: event.target.value }})}></Input>
                                     </InputGroup>
                                 </FormGroup>
                             </Form>

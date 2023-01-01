@@ -9,14 +9,13 @@ import "./Navbar.styles.scss";
 const Nav = () => {
 
     const location = useLocation();
-    console.log(location.pathname);
     let path = [ "/dashboard", "/challenge", "/post schedule" ];
     let exactPath;
-    if (location.pathname == path[0]) {
+    if (location.pathname === path[0]) {
         exactPath = "Dashboard";
-    } else if (location.pathname == path[1]) {
+    } else if (location.pathname === path[1]) {
         exactPath = "Challenge";
-    } else if (location.pathname == path[2]) {
+    } else if (location.pathname === path[2]) {
         exactPath = "Post Schedule";
     }
     
@@ -79,11 +78,11 @@ const Nav = () => {
                 <div className="alerm d-none d-md-none d-lg-block ">
                     <IoMdNotifications  style={{width: "40px", height: "40px"}}/>
                 </div>
-                {profilePicture.map((data) => {
+                {profilePicture.map((data, key) => {
 
                     return(
                         <>
-                        <Media className="dash_media" id="userName" key={data._id}>
+                        <Media className="dash_media" id="userName" key={key}>
                             <Media left middle className="img_media">
                                 <Media object src={`data:${data.pics.contentType};base64,${Buffer.from(data.pics.data.data).toString('base64')}`} className="passport" alt="User image"></Media>
                             </Media>
