@@ -259,6 +259,8 @@
     .Dashboard{
 
         .bd {
+            margin-left: 300px;
+            background-color: #F1F8FF;
             .col2{
                 .card-card1 {
 
@@ -286,10 +288,12 @@
         }
     }
 }
-@media (min-width: 979px) and (max-width: 1200px) {
+@media (min-width: 979px) and (max-width: 1199px) {
     .Dashboard {
 
         .bd {
+            margin-left: 255px;
+            background-color: #F1F8FF;
             .col1 {
                 .user_numbers {
                     margin-top: 10px;
@@ -392,6 +396,8 @@
     .Dashboard {
 
         .bd {
+            margin-left: 205px;
+            background-color: #F1F8FF;
             .col1 {
                 .user_numbers {
                     margin-top: 20px;
@@ -490,9 +496,13 @@
 }
 @media (max-width: 767px) {
     .Dashboard {
-
+        .sideBar {
+            position: fixed;
+            z-index: 100;
+        }
         .bd {
-            margin: 0px 5px 0px 300px;
+            margin-left: 155px;
+            background-color: #F1F8FF;
             .col1 {
                 .user_numbers {
                     margin-top: 20px;

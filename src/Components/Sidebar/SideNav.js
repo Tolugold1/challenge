@@ -47,17 +47,17 @@ const SideNav = () => {
         <div className="side_nav">
             {user && (<Navigate to="/" />)}
             <div className="brand_heading">
-                <GiSlumberingSanctuary style={{width: "30px", height: "30px", color: "#775DA6"}}/> <Link to="/dashboard" style={{color: "black", textDecoration: "none"}}><h2 className="brand">IChallenge</h2></Link>
+                <GiSlumberingSanctuary className="brand_logo"/> <Link to="/dashboard" style={{color: "black", textDecoration: "none"}}><h2 className="brand">IChallenge</h2></Link>
             </div>
 
             <div className="user_socialmedia_accordion" onClick={toggleCollapse}>
                 <div className="user_social">
-                    <ImSphere style={{width: "30px", height: "30px", color: "#775DA6", marginRight: "15px"}} />
+                    <ImSphere className="world_icon"/>
                     <div className="user_mail">
                         <p>@illiyinStudio <br /> <span className="instagram">Instagram</span></p>
                         <div className="forwar_bacward_icons">
                             {
-                                collapse ? <IoIosArrowDown style={{width: "27px", height: "27px", color: "#775DA6", marginRight: "16px"}}/> : <IoIosArrowForward style={{width: "27px", height: "27px", color: "#775DA6", marginRight: "16px"}}/>
+                                collapse ? <IoIosArrowDown style={{width: "2rem", height: "2rem", color: "#775DA6", marginRight: "16px"}}/> : <IoIosArrowForward style={{width: "2rem", height: "2rem", color: "#775DA6", marginRight: "16px"}}/>
                             }
                         </div>
                     </div>
@@ -75,17 +75,17 @@ const SideNav = () => {
                 </Collapse>
             </div>
 
-            <h6 style={{color: "grey", marginLeft: "10px", marginTop: "40px"}}>MAIN NAVIGATION</h6>
+            <h6 className="main_text">MAIN NAVIGATION</h6>
 
             <ul className="navigation_links">
                 <Link to="/dashboard" className="dash">
-                    <li className="lists"><MdSpaceDashboard style={{width: "27px", height: "27px", color: "#775DA6", marginRight: "10px"}} /> Dashboard</li>
+                    <li className="lists"><MdSpaceDashboard className="navs"/> Dashboard</li>
                 </Link>
                 <Link to="/challenge" className="dash">
-                    <li className="lists"><MdPeople style={{width: "27px", height: "27px", color: "#775DA6", marginRight: "10px"}} /> Challenge</li>
+                    <li className="lists"><MdPeople className="navs" /> Challenge</li>
                 </Link>
                 <Link to="/postschedule" className="dash">
-                    <li className="lists"><TbCalendarStats style={{width: "27px", height: "27px", color: "#775DA6", marginRight: "10px"}} /> Post schedule</li>
+                    <li className="lists"><TbCalendarStats className="navs"/> Post schedule</li>
                 </Link>
             </ul>
             <hr />

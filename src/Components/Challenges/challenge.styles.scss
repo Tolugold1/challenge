@@ -36,8 +36,8 @@
                         height: 150px; */
                     }
                     .peer_card_body {
-                        
-                        display: flex;
+                        /* 
+                        display: flex; */
                         align-items: center;
 
                         .ptitle {
@@ -60,7 +60,9 @@
             }
 
             .challenge_col2 {
-
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 .heading1 {
                     font-size: .8em;
                     text-align: center;
@@ -95,8 +97,19 @@
         }
 
     }
-}
-
-@media(max-width: 767px) {
-
+    @media (min-width: 979px) and (max-width: 1199px) {
+        .cha_container {
+            margin-left: 255px;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        .cha_container {
+            margin-left: 205px;
+        }
+    }
+    @media(max-width: 767px) {
+        .cha_container {
+            margin-left: 155px;
+        }
+    }
 }

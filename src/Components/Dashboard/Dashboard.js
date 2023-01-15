@@ -53,7 +53,7 @@ const DashboardPage = () => {
             backgroundColor: BarData2.map(data => data.bg),
             barThickness: 12,
             borderRadius: 10
-        },]
+        }]
     });
 
     return(

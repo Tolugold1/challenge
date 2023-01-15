@@ -1,20 +1,28 @@
 .side_nav {
     background-color: #fff;
     width: 300px;
-    min-height: 100vh;
+    height: 100vh;
     padding: 15px;
     font-family: 'overpass', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 
     .brand_heading {
         display: flex;
         align-items: center;
         margin-top: 5px;
 
+        .brand_logo {
+            width: 30px;
+            height: 30px;
+            color: #775DA6
+        }
+
         .brand {
             margin-left: 9px;
             font-size: 2rem;
             font-family: 'mukta', sans-serif;
+            font-weight: 500;
+            color:  #363b64;
         }
     }
 
@@ -22,24 +30,31 @@
         border: 0px;
         background-color: #fff;
         border-radius: 8px;
-        margin: 30px 0px 0px 20px;
+        margin: 25px 0px 0px 15px;
         
         .user_social {
             display: flex;
             align-items: center;
             padding: 15px;
+
+            .world_icon {
+                width: 40px; 
+                height: 40px; 
+                color: #775DA6; 
+                margin-right: 15px
+            }
             
             .user_mail {
                 display: flex;
                 align-items: center;
                 width: 100%;
-                font-size: 1.2rem;
+                font-size: 1.4rem;
 
                 p {
                     font-weight: 500;
 
                     .instagram {
-                        font-size: 1rem;
+                        font-size: 1.2rem;
                         color: grey;
                     }
                 }
@@ -54,19 +69,34 @@
 
             li {
                 margin-top: 8px;
+                font-size: 1.4rem;
             }
         }
     }
+
+    .main_text {
+        color: grey;
+        margin-left: 10px;
+        margin-top: 20px
+    }
+
     .navigation_links {
         margin-top: 20px;
-        margin-bottom: 40px;
         .dash {
             text-decoration: none;
             color: #775DA6;
 
+            .navs {
+                width: 27px;
+                height: 27px; 
+                color: #775DA6; 
+                margin-right: 10px;
+            }
+
             .lists {
                 list-style: none;
                 padding: 10px 15px;
+                font-size: 1.4rem;
 
                 &:hover {
                     background-color: #F1F5FE;
@@ -86,6 +116,7 @@
             .lists {
                 list-style: none;
                 padding: 10px 15px;
+                font-size: 1.4rem;
 
                 &:hover {
                     background-color: #F1F5FE;
@@ -93,6 +124,414 @@
                 }
             }
 
+        }
+    }
+}
+@media (min-width: 978px) and (max-width: 1199px) {
+    .side_nav {
+        background-color: #fff;
+        width: 250px; 
+        height: 100vh;
+        padding: 10px;
+        font-family: 'overpass', sans-serif;
+        font-size: 1.4rem;
+        
+        .brand_heading {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+
+            .brand_logo {
+                width: 28px;
+                height: 28px;
+                color: #775DA6
+            }
+
+            .brand {
+                margin-left: 6px;
+                font-size: 25px;
+                font-family: 'mukta', sans-serif;
+                color:  #363b64;
+                font-weight: 400;
+            }
+        }
+
+        .user_socialmedia_accordion {
+            border: 0px;
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 25px 0px 0px 15px;
+            
+            .user_social {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+
+                .world_icon {
+                    width: 30px; 
+                    height: 30px; 
+                    color: #775DA6; 
+                    margin-right: 15px
+                }
+                
+                .user_mail {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    font-size: 1.2rem;
+
+                    p {
+                        font-weight: 500;
+
+                        .instagram {
+                            font-size: 1rem;
+                            color: grey;
+                        }
+                    }
+
+                    .forwar_bacward_icons {
+                        margin-left: auto;
+                    }
+                }
+            }
+            .medias {
+                list-style: none;
+
+                li {
+                    margin-top: 6px;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        .main_text {
+            color: grey;
+            margin-left: 10px;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+
+        .navigation_links {
+            margin-top: 15px;
+            .dash {
+                text-decoration: none;
+                color: #775DA6;
+
+                .navs {
+                    width: 24px;
+                    height: 24px; 
+                    color: #775DA6; 
+                    margin-right: 10px;
+                }
+
+                .lists {
+                    list-style: none;
+                    padding: 8px 13px;
+                    font-size: 1.2rem;
+
+                    &:hover {
+                        background-color: #F1F5FE;
+                        border-radius: 15px;
+                    }
+                }
+
+            }
+        }
+        
+        .navigation_links1 {
+            margin-top: 15px;
+            .dash {
+                text-decoration: none;
+                color: #775DA6;
+
+                .navs {
+                    width: 24px;
+                    height: 24px; 
+                    color: #775DA6; 
+                    margin-right: 10px;
+                }
+
+                .lists {
+                    list-style: none;
+                    padding: 10px 15px;
+                    font-size: 1.2rem;
+
+                    &:hover {
+                        background-color: #F1F5FE;
+                        border-radius: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .side_nav {
+        background-color: #fff;
+        width: 200px; 
+        height: 100vh;
+        padding: 10px;
+        font-family: 'overpass', sans-serif;
+        font-size: 1.2rem;
+        
+        .brand_heading {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+
+            .brand_logo {
+                width: 26px;
+                height: 26px;
+                color: #775DA6
+            }
+            .brand {
+                margin-left: 4px;
+                font-size: 23px;
+                font-family: 'mukta', sans-serif;
+                color:  #363b64;
+                font-weight: 400;
+            }
+        }
+
+        .user_socialmedia_accordion {
+            border: 0px;
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 20px 0px 0px 10px;
+            
+            .user_social {
+                display: flex;
+                align-items: center;
+                padding: 8px;
+
+                .world_icon {
+                    display: none;
+                }
+                
+                .user_mail {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    font-size: 1rem;
+
+                    p {
+                        font-weight: 500;
+
+                        .instagram {
+                            font-size: .8rem;
+                            color: grey;
+                        }
+                    }
+
+                    .forwar_bacward_icons {
+                        margin-left: auto;
+                    }
+                }
+            }
+            .medias {
+                list-style: none;
+
+                li {
+                    margin-top: 4px;
+                    font-size: 1rem;
+                }
+            }
+        }
+        .main_text {
+            color: grey;
+            margin-left: 5px;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .navigation_links {
+            margin-top: 10px;
+            .dash {
+                text-decoration: none;
+                color: #775DA6;
+
+                .navs {
+                    width: 21px;
+                    height: 21px; 
+                    color: #775DA6; 
+                    margin-right: 8px;
+                }
+
+                .lists {
+                    list-style: none;
+                    padding: 6px 11px;
+                    font-size: 1rem;
+
+                    &:hover {
+                        background-color: #F1F5FE;
+                        border-radius: 15px;
+                    }
+                }
+
+            }
+        }
+        
+        .navigation_links1 {
+            margin-top: 10px;
+            .dash {
+                text-decoration: none;
+                color: #775DA6;
+                
+                .navs {
+                    width: 24px;
+                    height: 24px; 
+                    color: #775DA6; 
+                    margin-right: 10px;
+                }
+
+                .lists {
+                    list-style: none;
+                    padding: 10px 15px;
+                    font-size: 1rem;
+
+                    &:hover {
+                        background-color: #F1F5FE;
+                        border-radius: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .side_nav {
+        background-color: #fff;
+        width: 150px; 
+        height: 100vh;
+        padding: 10px;
+        font-family: 'overpass', sans-serif;
+        font-size: 1rem;
+        
+        .brand_heading {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            .brand_logo {
+                width: 24px;
+                height: 24px;
+                color: #775DA6
+            }
+
+            .brand {
+                margin-left: 4px;
+                font-size: 15px;
+                font-family: 'mukta', sans-serif;
+                color:  #363b64;
+                font-weight: 600;
+            }
+        }
+
+        .user_socialmedia_accordion {
+            border: 0px;
+            background-color: #fff;
+            margin: 0px;
+            
+            .user_social {
+                display: flex;
+                align-items: center;
+                padding: 6px;
+
+                .world_icon {
+                    display: none;
+                }
+                
+                .user_mail {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    font-size: .8rem;
+
+                    p {
+                        font-weight: 500;
+
+                        .instagram {
+                            font-size: .6rem;
+                            color: grey;
+                        }
+                    }
+
+                    .forwar_bacward_icons {
+                        margin-left: auto;
+                    }
+                }
+            }
+            .medias {
+                list-style: none;
+
+                li {
+                    margin-top: 4px;
+                    font-size: .8rem;
+                    margin-left: -15px;
+                }
+            }
+        }
+
+        .main_text {
+            color: grey;
+            margin-left: 2px;
+            margin-top: 5px;
+            font-size: .8rem;
+        }
+
+        .navigation_links {
+            margin-top: 5px;
+            .dash {
+                text-decoration: none;
+                color: #775DA6;
+                margin-left: -5px;
+
+                .navs {
+                    width: 18px;
+                    height: 18px; 
+                    color: #775DA6; 
+                    margin-right: 4px;
+                }
+
+                .lists {
+                    list-style: none;
+                    padding: 4px 3px;
+                    font-size: .8rem;
+
+                    &:hover {
+                        background-color: #F1F5FE;
+                        border-radius: 15px;
+                    }
+                }
+
+            }
+        }
+        
+        .navigation_links1 {
+            margin-top: 5px;
+            .dash {
+                text-decoration: none;
+                color: #775DA6;
+                margin-left: -5px;
+                
+                .navs {
+                    width: 18px;
+                    height: 18px; 
+                    color: #775DA6; 
+                    margin-right: 4px;
+                }
+
+                .lists {
+                    list-style: none;
+                    padding: 4px 3px;
+                    font-size: .8rem;
+
+                    &:hover {
+                        background-color: #F1F5FE;
+                        border-radius: 15px;
+                    }
+                }
+            }
         }
     }
 }
