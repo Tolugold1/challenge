@@ -25,12 +25,33 @@
             }
         }
     }
-    .alerm {
+    .alarm {
         padding: 3px;
         border: 0px;
         background-color: white;
         margin: -3px 10px 0px;
         border-radius: 10px;
+        width: fit-content;
+        height: fit-content;
+
+        .notify {
+            width: 2em;
+            height: 2em
+        }
+        .noti_count {
+            background-color: red;
+            position: absolute; 
+            width: 1em;
+            height: 1em;
+            border-radius: 50%;
+            color: white;
+            font-size: .8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            margin-left: 25px;
+        }
     }
 
     .dash_media {

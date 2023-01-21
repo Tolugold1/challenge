@@ -29,9 +29,24 @@ const Nav = () => {
     const year = new Date().getFullYear()
 
     useEffect(() => {
-       getUserdata();
-       getUserDetails();
+        notification();
+        getUserdata();
+        getUserDetails();
     }, [])
+
+    const notification = () => {
+        const bearer = "Bearer " + localStorage.getItem("token");
+        fetch("https://localhost:3443/request", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": bearer
+            }
+        })
+        .then((resp) => resp.json())
+        .then((resp) => {/* 
+            console.log(typeof resp, resp); */
+        }, (err) => console.log(err)).catch(err => console.log(err));
+    }
 
     const getUserdata = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
@@ -75,8 +90,9 @@ const Nav = () => {
                         </InputGroup>
                     </FormGroup>
                 </Form>
-                <div className="alerm d-none d-md-none d-lg-block ">
-                    <IoMdNotifications  style={{width: "40px", height: "40px"}}/>
+                <div className="alarm d-none d-md-none d-lg-block ">
+                    <div className="noti_count">4</div>
+                    <IoMdNotifications className="notify"/>
                 </div>
                 {profilePicture.map((data, key) => {
 

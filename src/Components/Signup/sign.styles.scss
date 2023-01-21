@@ -63,6 +63,16 @@
                         color: #775DA6;
                         font-weight: 500;
                     }
+
+                    .errMess {
+                        color: red;
+                        font-weight: 600;
+                        display: block;
+                    }
+
+                    .hideit {
+                        display: none;
+                    }
                     
                     .card_form_group {
                         margin-top: 15px;

@@ -8,7 +8,6 @@ const Details = () => {
     const [statedType, setstatedType] = useState(false);
     const [ value, setValue ] = useState({fullname: "", twittername: "", githubname: "", facebookname: ""});
     const [ file, setFile ] = useState({pics: []});
-    const [ respo, setRespo ] = useState({user: "", error: ""})
     const type = statedType ? 'text' : 'password';
 
     const onFileUpload = () => {
@@ -31,12 +30,14 @@ const Details = () => {
         .then(resp => resp.json())
         .then(resp => {
             console.log(resp)
-            setRespo({user: resp.success, error: null});
+            if (resp.success === true) {
+                window.location.assign("http://localhost:3001/signin")
+             } else {
+                window.location.assign("http://localhost:3001/details")
+             }
         })
-        .catch(err => {
-        setRespo({user: false, error: err})})
+        .catch(err => console.log(err))
     }
-    console.log(typeof file.pics)
     const handleSubmit = (event) => {
         event.preventDefault();
         onFileUpload()
@@ -75,12 +76,8 @@ const Details = () => {
                 <Col sm="12" md="6" lg="6" className="sign_col2">
                     <Card className="sign_form">
                         <CardBody className="sign_card_body">
-                            {respo.user && (<Navigate to="/dashboard" />)}
                             <h2 style={{fontSize: "1em"}}>Please fill the form below</h2>
                             <Form onSubmit={handleSubmit}>
-                                <FormGroup className="card_form_group">
-                                    <Input type="text" placeholder="Fullname" className="input-input" name="fullname" onChange={handleChange}  />
-                                </FormGroup>
                                 <FormGroup className="card_form_group">
                                     <Input type="text" placeholder="Twitter username" className="input-input" name="twittername" onChange={handleChange}   />
                                 </FormGroup>

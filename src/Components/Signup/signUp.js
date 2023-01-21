@@ -8,13 +8,14 @@ import { Link, Navigate } from "react-router-dom";
 
 const SignUp = () => {
     const [statedType, setstatedType] = useState(false);
-    const [ value, setValue ] = useState({username:"", email: "", password:""});
+    const [ value, setValue ] = useState({username:"", fullname: "", email: "", password:""});
     const [ respo, setRespo ] = useState({user: "", error: ""})
     const type = statedType ? 'text' : 'password';
 
     const postUserDetails = async () => {
         const v = {
             username: value.username,
+            fullname: value.fullname,
             email: value.email,
             password: value.password
         }
@@ -74,6 +75,9 @@ const SignUp = () => {
                             <h2>Sign Up</h2>
                             <p>Do you have an account? <Link to="/signIn" className="signup_link"> sign in</Link></p>
                             <Form onSubmit={handleSubmit}>
+                                <FormGroup className="card_form_group">
+                                    <Input type="text" placeholder="Fullname" className="input-input" name="fullname" onChange={handleChange} required />
+                                </FormGroup>
                                 <FormGroup className="card_form_group">
                                     <Input type="text" placeholder="Username" className="input-input" name="username" onChange={handleChange} required />
                                 </FormGroup>

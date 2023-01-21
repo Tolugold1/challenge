@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, {useState, useEffect } from "react";
 import Nav from "../Navbar/Navbar";
 import { Row, Col, Card, CardBody, Container } from "reactstrap";
 import { PieData } from "./pie";
@@ -16,6 +16,23 @@ import "./Dashboard.styles.scss";
 
 
 const DashboardPage = () => {
+
+    useEffect(() => {
+        personalRequestAcct()
+    }, [])
+
+    const personalRequestAcct = () => {
+        const bearer = "Bearer " + localStorage.getItem("token")
+        fetch("https://localhost:3443/request", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": bearer
+            }
+        })
+        .then(resp => {resp.json()}, (err) => console.log(err))
+        .catch(err => console.log(err))
+    }
 
     const [ pieData, setPieData ] = useState({
         labels: PieData.map((data) => data.label),

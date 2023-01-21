@@ -8,8 +8,8 @@ import { Link, Navigate } from "react-router-dom";
 const SignIn = () => {
     const [statedType, setstatedType] = useState(false);
     const [ value, setValue ] = useState({username:"", password:""});
-    const [ respo, setRespo ] = useState({user: "", error: ""})
-    const [ check, setCheck ] = useState(false);
+    const [ respo, setRespo ] = useState("")
+    const [ check, setCheck ] = useState(false)
     const type = statedType ? 'text' : 'password';
 
 /*     const githubLogin =  async () => {
@@ -44,17 +44,23 @@ const SignIn = () => {
         })
         .then(resp => resp.json())
         .then((resp) => {
-            if (resp.success) {
+            console.log(resp)
+            if (resp.success === true) {
                 localStorage.setItem("token", resp.token);
+                localStorage.setItem("myId", resp.userId)
+                validateProfileInfo(resp.userId);
+            } else {
+                setRespo(resp.err.name + ': ' + resp.err.message)
+                setCheck(!check)
             }
-            setRespo({user: resp.success, error: null});
         }).catch(err => {
-        setRespo({user: false, error: err})})
+            setRespo(false)
+        })
     }
 
-    const validateProfileInfo = () => {
-        const bearer = "Bearer " + localStorage.getItem('token')
-        fetch("https://localhost:3443/upload", {
+    const validateProfileInfo = (p) => {
+        const bearer = "Bearer " + localStorage.getItem("token");
+        fetch(`https://localhost:3443/upload/${p}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -62,10 +68,11 @@ const SignIn = () => {
         })
         .then((resp) => resp.json())
         .then((resp) => {
-            if (resp.success === true) {
-                setCheck(true)
+            if (resp.success === true) { // authenticate and search if user has filled in the details form, if user details found, redirect to dashboard else redirect to details form page.
+                setRespo(true);
+                window.location.assign("http://localhost:3001/dashboard")
             } else {
-                setCheck(false)
+                window.location.assign("http://localhost:3001/details")
             }
         })
     }
@@ -73,7 +80,6 @@ const SignIn = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         postUserDetails();
-        validateProfileInfo();
     }
     const handleChange = (event) => {
         const target = event.target;
@@ -110,7 +116,6 @@ const SignIn = () => {
                 <Col className="sign_col2"  sm="12" md="6" lg="6">
                     <Card className="sign_form">
                         <CardBody className="sign_card_body">
-                            { check ? respo.user && ( <Navigate to="/dashboard" /> ) : respo.user && ( <Navigate to="/details" /> ) }
                             <h2>Sign In</h2>
                             <p>Don't have an account? <Link to="/signUp" className="signup_link"> sign up</Link></p>
                             <Form onSubmit={handleSubmit}>
@@ -126,6 +131,7 @@ const SignIn = () => {
                                 <div><FormText><a href="#" className="f_password">Forgot password?</a></FormText></div>
                                 <Button type="submit" value="submit" className="form_submit_btn">Submit</Button>
                             </Form>
+                            <div className={check ? "errMess" : "hideit"}>{respo}</div>
                             <div className="line">
                                 <hr style={{width:"50%", marginRight: "4px"}}/> or <hr style={{width:"50%", marginLeft: "4px"}}/>
                             </div>

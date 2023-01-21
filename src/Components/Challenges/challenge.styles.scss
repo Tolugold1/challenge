@@ -15,10 +15,40 @@
         background-color: #F1F8FF;
         height: 100vh;
 
-        .h1 {
-            text-align: center;
-            font-size: 1em;
-            margin: 10px 0px 10px 0px;
+        .ch {
+            display: flex;
+
+            .h1 {
+                float: left;
+                font-size: 1em;
+                margin: 10px 0px 10px 0px;
+                margin-right: auto;
+            }
+            .alarm {
+                padding: 3px;
+                border: 0px;
+                background-color: white;
+                margin: -3px 10px 0px;
+                border-radius: 10px;
+        
+                .notify {
+                    width: 1em;
+                    height: 1em
+                }
+                .noti_count {
+                    background-color: red;
+                    position: absolute; 
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 2px;
+                    margin-left: 25px;
+                }
+            }
         }
         .challenge_row {
             margin-top: 30px;
@@ -79,7 +109,7 @@
                     .search_btn {
                         font-size: 1em;
                         font-weight: 500;
-                        background-color: #363b64;
+                        background-color: hsl(233, 30%, 30%, 0.6);
                         margin-right: auto;
                         margin-left: auto;
                     }
@@ -100,16 +130,131 @@
     @media (min-width: 979px) and (max-width: 1199px) {
         .cha_container {
             margin-left: 255px;
+
+            .ch {
+                display: flex;
+    
+                .h1 {
+                    float: left;
+                    font-size: 1em;
+                    margin: 10px 0px 10px 0px;
+                    margin-right: auto;
+                }
+                .alarm {
+                    padding: 3px;
+                    border: 0px;
+                    background-color: white;
+                    margin: -3px 10px 0px;
+                    border-radius: 10px;
+            
+                    .notify {
+                        width: 1.5em;
+                        height: 1.5em
+                    }
+                    .noti_count {
+                        background-color: red;
+                        position: absolute; 
+                        width: 1.2em;
+                        height: 1.2em;
+                        border-radius: 50%;
+                        color: white;
+                        font-size: .8em;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 4px;
+                        margin-left: 20px;
+                    }
+                }
+            }
         }
     }
     @media (min-width: 768px) and (max-width: 979px) {
         .cha_container {
             margin-left: 205px;
+
+            .ch {
+                display: flex;
+                align-items: center;
+    
+                .h1 {
+                    float: left;
+                    font-size: 1em;
+                    margin: 10px 0px 10px 0px;
+                    margin-right: auto;
+                }
+                .alarm {
+                    padding: 3px;
+                    border: 0px;
+                    background-color: white;
+                    margin: -3px 10px 0px;
+                    border-radius: 10px;
+            
+                    .notify {
+                        width: 1.5em;
+                        height: 1.5em
+                    }
+                    .noti_count {
+                        background-color: red;
+                        position: absolute; 
+                        width: 1.2em;
+                        height: 1.2em;
+                        border-radius: 50%;
+                        color: white;
+                        font-size: .8em;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 4px;
+                        margin-left: 16px;
+                    }
+                }
+            }
         }
     }
     @media(max-width: 767px) {
         .cha_container {
             margin-left: 155px;
+
+            .ch {
+                display: flex;
+    
+                .h1 {
+                    float: left;
+                    font-size: 1em;
+                    margin: 10px 0px 10px 0px;
+                    margin-right: auto;
+                }
+                .alarm {
+                    padding: 3px;
+                    border: 0px;
+                    background-color: white;
+                    margin: -3px 10px 0px;
+                    border-radius: 10px;
+                    width: fit-content;
+                    height: fit-content;
+            
+                    .notify {
+                        width: 1.2em;
+                        height: 1.2em
+                    }
+                    .noti_count {
+                        background-color: red;
+                        position: absolute; 
+                        width: 1em;
+                        height: 1em;
+                        border-radius: 50%;
+                        color: white;
+                        font-size: .5em;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 2px;
+                        margin-left: 12px;
+                        margin-top: 5px;
+                    }
+                }
+            }
         }
     }
 }
