@@ -12,18 +12,28 @@ const ChallengePage = () => {
     const [ peerProfilePics, setPeerProfilePics ] = useState([]);
     const [ c, setC ] = useState(false);
     const [ peerId, setPeerId ] = useState("")
+    const [ errorMess, setErrorMess ] = useState("");
+    const [ e, setE ] = useState(false);
 
     const getAPeer = () => {
+        const bearer = "Bearer " + localStorage.getItem("token")
         fetch(`https://localhost:3443/users/${fn.n}`, {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": bearer
             }
         })
         .then((resp) => resp.json())
         .then((resp) => {
             console.log(resp.status);
-            setPeerId(resp.status[0]._id)
-            userDetails(resp.status[0]._id)
+            if (resp.success === true) {
+                setE(false);
+                setPeerId(resp.status[0]._id)
+                userDetails(resp.status[0]._id)
+            } else {
+                setE(true);
+                setErrorMess(resp.status)
+            }
         })
         .catch(err => console.log(err));
     }
@@ -46,12 +56,8 @@ const ChallengePage = () => {
 
     const sendRequest = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        const v = {
-            peerId: peerId
-        }
-        fetch("https://localhost:3443/request", {
+        fetch(`https://localhost:3443/request/${peerId}`, {
             method: "POST",
-            body: JSON.stringify(v),
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -60,7 +66,6 @@ const ChallengePage = () => {
         .then((resp) => resp.json())
         .then(resp => console.log(resp)).catch(err => console.log(err));
     }
-    console.log("peerId", peerId)
     return(
         <div className="challengeComponent">
             <div className="sidebar"><SideNav /></div>
@@ -71,7 +76,7 @@ const ChallengePage = () => {
                 <div className="ch">
                     <p className="h1">Challenge your peers</p>
                     <div className="alarm d-block d-md-block d-lg-none ">
-                        <div className="noti_count">4</div>
+                        <div className="noti_count">{localStorage.getItem("number_of_notification")}</div>
                         <IoMdNotifications className="notify"/>
                     </div>
                 </div>
@@ -123,6 +128,7 @@ const ChallengePage = () => {
                                 </FormGroup>
                             </Form>
                         </div>
+                        <div className={e ? "reveal" : "dontReveal"}>{errorMess}</div>
                         <p className="heading1">Or <br/> search at random by clicking the button below.</p>
                         <div className="btnDiv"><Button className="search_btn">Search at random</Button></div></div>
                     </Col>

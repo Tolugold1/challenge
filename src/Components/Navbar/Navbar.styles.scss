@@ -28,7 +28,7 @@
     .alarm {
         padding: 3px;
         border: 0px;
-        background-color: white;
+        background-color: transparent;
         margin: -3px 10px 0px;
         border-radius: 10px;
         width: fit-content;
@@ -36,7 +36,8 @@
 
         .notify {
             width: 2em;
-            height: 2em
+            height: 2em;
+            color: #363B64;
         }
         .noti_count {
             background-color: red;
@@ -194,4 +195,59 @@
     --bs-tooltip-color: #363b64;
     border: 0px;
     border-radius: 20px;
+}
+
+.popover {
+    border: 1px solid #363B64;
+    max-width: 400px;
+    .popover-inner {
+        max-width: 400px;
+        height: fit-content;
+    }
+
+    .popover-header {
+        background-color: white;
+        font-weight: 600;
+        text-align: center;
+        border: 0px;
+    }
+    .noti_pop_body {
+        padding: 15px;
+
+        .pop_over_body {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0px;
+
+            .pop_media {
+                display: flex;
+                align-items: center;
+                margin-right: 15px;
+                margin-left: 0px;
+                .sender_img {
+                    margin-right: 3px;
+                }
+                .sender_name {
+                    font-weight: 600;
+                }
+            }
+
+            .btns {
+                display: flex;
+                .accept_btn {
+                    font-weight: 800;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 3px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: hsl(233, 30%, 30%, 0.9);
+                    &:hover {
+                        background-color: #363B64;
+                    }
+                }
+            }
+        }
+    }
 }

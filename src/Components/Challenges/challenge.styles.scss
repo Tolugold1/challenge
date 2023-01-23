@@ -102,6 +102,16 @@
                     display: flex;
                     justify-content: center;
                 }
+                .reveal {
+                    color: red;
+                    font-weight: 600;
+                    display: block;
+                    font-size: .8em;
+                    text-align: center;
+                }
+                .dontReveal {
+                    display: none;
+                }
                 .btnDiv {
                     display: flex;
                     justify-content: center;

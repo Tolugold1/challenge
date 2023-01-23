@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, NavbarBrand, Form, FormGroup, InputGroup, Input, Media, Tooltip } from "reactstrap";
+import { Navbar, NavbarBrand, Form, FormGroup, InputGroup,
+    Input, Media, Tooltip, Button, Popover, PopoverBody, PopoverHeader } from "reactstrap";
 import { BiSearch } from "react-icons/bi";
 import { Buffer } from "buffer";
 import { IoMdNotifications } from "react-icons/io"
@@ -21,7 +22,12 @@ const Nav = () => {
     
     const [ userName, setUserName ] = useState({name: ""})
     const [ show, setShow ] = useState(false);
-    const [ profilePicture, setProfilePicture ] = useState([])
+    const [ profilePicture, setProfilePicture ] = useState([]);
+    const [ request, setRequest ] = useState([]);
+    const [ eachSenderId, setEachSenderId ] = useState([]);
+    const [ notify, setNotify ] = useState({count: 0});
+    const [ showPop, setShowPop ] = useState(false)
+    const toggle = () => setShowPop(!showPop);
     const toggleShow = () => setShow(!show);
     const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     const day = new Date().getDate();
@@ -43,10 +49,38 @@ const Nav = () => {
             }
         })
         .then((resp) => resp.json())
-        .then((resp) => {/* 
-            console.log(typeof resp, resp); */
+        .then((resp) => {
+            setNotify({count: resp.status.requestSenderId.length})
+            setRequest(resp.status.requestSenderId)
         }, (err) => console.log(err)).catch(err => console.log(err));
     }
+    console.log("request", request)
+
+
+    const getRequestSenderImg = () => {
+        let senderId = []
+        for (let data = 0; data <= request.length - 1; data++) {
+            senderId.push(request[data]._id)
+            console.log(senderId)
+        }
+        let s = []
+        for (let i = 0; i <= senderId.length - 1; i++) {
+            fetch(`https://localhost:3443/upload/${senderId[i]}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(resp => resp.json())
+            .then((r) => {
+                console.log("r.status",r.status)
+                s.push(r.status[0])
+                setEachSenderId(s)
+            })
+        }
+        console.log("s", s)
+    }
+    console.log("eachSenderId", eachSenderId)
+    localStorage.setItem("number_of_notification", notify.count)
 
     const getUserdata = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
@@ -90,12 +124,37 @@ const Nav = () => {
                         </InputGroup>
                     </FormGroup>
                 </Form>
-                <div className="alarm d-none d-md-none d-lg-block ">
-                    <div className="noti_count">4</div>
+                <Button id="notification" toggle={toggle} className="alarm d-none d-md-none d-lg-block " onClick={
+    getRequestSenderImg}>
+                    <div className="noti_count">{notify.count}</div>
                     <IoMdNotifications className="notify"/>
-                </div>
+                </Button>
+                <Popover className="pop" target="#notification" toggle={toggle} placement="bottom" isOpen={showPop}>
+                    <PopoverHeader className="noti_pop_header">welcome</PopoverHeader>
+                    <PopoverBody className="noti_pop_body">{/* 
+                    {request.map((data, key) => { */}
+                        {eachSenderId.map((d, key) => {
+                            return (
+                                <div className="pop_over_body" key={key}>
+                                    <Media className="pop_media">
+                                        <Media left middle className="sender_img">
+                                            <Media object src={`data:${d.pics.contentType};base64,${Buffer.from(d.pics.data.data).toString('base64')}`} alt="sender image" className="avatar"/>
+                                        </Media>
+                                        <Media body>
+                                            <p className="sender_name">{d.githubname}</p>
+                                        </Media>
+                                    </Media>
+                                    <div className="btns">
+                                        <Button className="accept_btn">+</Button>
+                                        <Button className="accept_btn">-</Button>
+                                    </div>
+                                </div>
+                            )
+                        })}{/* 
+                    })} */}
+                    </PopoverBody>
+                </Popover>
                 {profilePicture.map((data, key) => {
-
                     return(
                         <>
                         <Media className="dash_media" id="userName" key={key}>
