@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import SideNav from "../Sidebar/SideNav";
 import Nav from "../Navbar/Navbar";
 import { Buffer } from "buffer";
 import { IoMdNotifications } from "react-icons/io"
+import { RiArrowRightSFill, RiArrowDownSFill } from "react-icons/ri"
 import { BiSearch } from "react-icons/bi"
-import { Container, Row, Col, Card, CardTitle, CardBody, Button, CardImg, Form, FormGroup, InputGroup, Input} from "reactstrap";
+import { Container, Row, Col, Card, CardTitle, CardBody, Button, CardImg, Form, FormGroup, InputGroup, Input, Media } from "reactstrap";
 import "./challenge.styles.scss"
 
 const ChallengePage = () => {
@@ -14,6 +15,40 @@ const ChallengePage = () => {
     const [ peerId, setPeerId ] = useState("")
     const [ errorMess, setErrorMess ] = useState("");
     const [ e, setE ] = useState(false);
+    const [ requestIsend, setRequestIsend ] = useState([]);
+    const [ showRequest, setShowRequest ] = useState(false);
+
+    useEffect(() => {
+        let s = []
+        const notification = () => {
+            const bearer = "Bearer " + localStorage.getItem("token");
+            fetch("https://localhost:3443/request", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": bearer
+                }
+            })
+            .then((resp) => resp.json())
+            .then((resp) => {
+                for (let i = 0; i <= resp.status.requestISend.length - 1; i++) {
+                    getRequestISender(resp.status.requestISend[i]._id)
+                }
+            }, (err) => console.log(err)).catch(err => console.log(err));
+        };
+        const getRequestISender = (id) => {
+            fetch(`https://localhost:3443/upload/${id}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(resp => resp.json())
+            .then((r) => {
+                s.push(r.status[0])
+            })
+        };
+        setRequestIsend(s);
+        notification();
+    }, [])
 
     const getAPeer = () => {
         const bearer = "Bearer " + localStorage.getItem("token")
@@ -25,7 +60,6 @@ const ChallengePage = () => {
         })
         .then((resp) => resp.json())
         .then((resp) => {
-            console.log(resp.status);
             if (resp.success === true) {
                 setE(false);
                 setPeerId(resp.status[0]._id)
@@ -49,7 +83,6 @@ const ChallengePage = () => {
             if (resp.success === true) {
                 setC(!c);
             }
-            console.log(resp.status);
             setPeerProfilePics(resp.status)
         }, (err) => console.log(err)).catch(err => console.log(err));
     }
@@ -66,6 +99,10 @@ const ChallengePage = () => {
         .then((resp) => resp.json())
         .then(resp => console.log(resp)).catch(err => console.log(err));
     }
+    const func = () => { //  toggle the display of the list of request you send
+        setShowRequest(!showRequest)
+    }
+
     return(
         <div className="challengeComponent">
             <div className="sidebar"><SideNav /></div>
@@ -106,12 +143,43 @@ const ChallengePage = () => {
                                 } </div>
                             
                             : 
-                                <Card style={{border: "0px"}}>
-                                    <CardImg className="challenge_img img-fluid" src={require("./img.jpeg")} alt="challenge image" />
-                                </Card>
+                            <Card className="default_card" style={{border: "0px"}}>
+                                <CardImg className="challenge_img img-fluid" src={require("./img.jpeg")} alt="challenge image" />
+                                <CardBody>
+                                    <div className="req_list_heading">
+                                        <p style={{color: "#363b64", fontWeight: "600"}}>List of Request You Send </p> 
+                                        <Button className="listOfreq" onClick={() => {func()}}>
+                                            {showRequest ? < RiArrowDownSFill/> : <RiArrowRightSFill/> }
+                                        </Button>
+                                    </div>
+                                    { showRequest ?
+                                        
+                                        <ul className="req_list">
+                                            {
+                                            requestIsend.map((data, key) => {
+                                                return (
+                                                    <li className="lst"  key={key}>
+                                                        <div className="reqSent">
+                                                            <Media className="reqSentMedia">
+                                                                <Media left middle className="sender_img">
+                                                                    <Media object src={`data:${data.pics.contentType};base64,${Buffer.from(data.pics.data.data).toString('base64')}`} alt="image of the individual I send request to" className="avatar"/>
+                                                                </Media>
+                                                                <Media body className="m_body">
+                                                                    <p className="req_user_gitname">{data.githubname}<span className="github">@gitHub name</span></p>
+                                                                </Media>
+                                                            </Media>
+                                                        </div>
+                                                    </li>
+                                                )
+                                            })
+                                        }</ul>
+                                        :
+                                        <div>Click the button above to see the list.</div>
+                                    }
+                                </CardBody>
+                            </Card>
                         }
-                    </Col>{/* 
-                    <Col sm="12" md="12" lg="4"></Col> */}
+                    </Col>
                     <Col sm="12" md="12" lg="6" className="challenge_col2">
                         <div><p className="heading1">Do you know the person you want to send request to? search for the person in the search bar below</p>
                         <div className="challenge_form">

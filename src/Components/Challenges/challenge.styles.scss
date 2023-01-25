@@ -13,7 +13,7 @@
         flex: 7;
         margin-left: 300px;
         background-color: #F1F8FF;
-        height: 100vh;
+        height: auto;
 
         .ch {
             display: flex;
@@ -83,6 +83,47 @@
                             justify-content: center;
                             .send_request {
                                 background-color: #363b64;
+                            }
+                        }
+                    }
+                }
+                .default_card {
+                    background-color: transparent;
+                    .req_list_heading {
+                        display: flex;
+                        align-items: center;
+
+                        .listOfreq {
+                            margin-left: auto;
+                            background-color: hsl(233, 30%, 30%, 0.9);
+                            color: white;
+
+                            &:hover {
+                                background-color: #363b64;
+                            }
+                        }
+                    }
+                    .req_list {
+                            
+                        list-style-type: square;
+                        .lst {
+                            margin-top: 15px;
+
+                            .reqSentMedia {
+                                display: flex;
+                                align-items: center;
+                                
+                                .sender_img {
+                                    margin-right: 20px;
+                                }
+                                .m_body {
+                                    color:#363b64;
+                                    font-weight: 600;
+
+                                    .github {
+                                        color: grey;
+                                    }
+                                }
                             }
                         }
                     }

@@ -7,7 +7,7 @@ import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { MdSpaceDashboard, MdPeople, MdSettings, MdHeadphones } from "react-icons/md";
 import { TbCalendarStats } from "react-icons/tb";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const SideNav = () => {
@@ -32,20 +32,26 @@ const SideNav = () => {
         })
     }
 
-    const [ user, setUser ] = useState(false);
-
     const toggleCollapse = () => setCollapse(!collapse);
     const logOut = () => {
         alert("Are you sure?");
         localStorage.removeItem("token");
-        setUser(!user);
+        fetch("https://localhost:3443/users/logout", {
+            method: "POST",
+            headers: {
+                "Content_Type": "application/json"
+            }
+        })
+        .then(resp => resp.json())
+        .then(resp => {
+            window.location.assign(resp.status)
+        })
     }
 
 
 
     return(
         <div className="side_nav">
-            {user && (<Navigate to="/" />)}
             <div className="brand_heading">
                 <GiSlumberingSanctuary className="brand_logo"/> <Link to="/dashboard" style={{color: "black", textDecoration: "none"}}><h2 className="brand">IChallenge</h2></Link>
             </div>

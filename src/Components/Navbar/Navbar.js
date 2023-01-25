@@ -35,52 +35,40 @@ const Nav = () => {
     const year = new Date().getFullYear()
 
     useEffect(() => {
-        notification();
-        getUserdata();
-        getUserDetails();
-    }, [])
-
-    const notification = () => {
-        const bearer = "Bearer " + localStorage.getItem("token");
-        fetch("https://localhost:3443/request", {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": bearer
-            }
-        })
-        .then((resp) => resp.json())
-        .then((resp) => {
-            setNotify({count: resp.status.requestSenderId.length})
-            setRequest(resp.status.requestSenderId)
-        }, (err) => console.log(err)).catch(err => console.log(err));
-    }
-    console.log("request", request)
-
-
-    const getRequestSenderImg = () => {
-        let senderId = []
-        for (let data = 0; data <= request.length - 1; data++) {
-            senderId.push(request[data]._id)
-            console.log(senderId)
-        }
         let s = []
-        for (let i = 0; i <= senderId.length - 1; i++) {
-            fetch(`https://localhost:3443/upload/${senderId[i]}`, {
+        const notification = () => {
+            const bearer = "Bearer " + localStorage.getItem("token");
+            fetch("https://localhost:3443/request", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": bearer
+                }
+            })
+            .then((resp) => resp.json())
+            .then((resp) => {
+                setNotify({count: resp.status.requestSenderId.length})
+                for (let i = 0; i <= resp.status.requestSenderId.length - 1; i++) {
+                    getRequestSenderImg(resp.status.requestSenderId[i]._id)
+                }
+            }, (err) => console.log(err)).catch(err => console.log(err));
+        };
+        const getRequestSenderImg = (id) => {
+            fetch(`https://localhost:3443/upload/${id}`, {
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
             .then(resp => resp.json())
             .then((r) => {
-                console.log("r.status",r.status)
                 s.push(r.status[0])
-                setEachSenderId(s)
             })
         }
-        console.log("s", s)
-    }
-    console.log("eachSenderId", eachSenderId)
-    localStorage.setItem("number_of_notification", notify.count)
+        localStorage.setItem("number_of_notification", notify.count)
+        setEachSenderId(s)
+        notification();
+        getUserdata();
+        getUserDetails();
+    }, [])
 
     const getUserdata = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
@@ -110,6 +98,30 @@ const Nav = () => {
         })
     }
 
+    const deleteSenderId = (senderId) => {
+        const bearer = "Bearer " + localStorage.getItem("token");
+        fetch(`https://localhost:3443/request/${senderId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": bearer
+            }
+        })
+        .then(resp => resp.json)
+    }
+
+    const updateSenderIdAfterRejection = (senderId) => {
+        const bearer = "Bearer " + localStorage.getItem("token");
+        fetch(`https://localhost:3443/request/${senderId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": bearer
+            }
+        })
+        .then(resp => resp.json)
+    }
+
     return(
         <div className="dash_nav">
             <Navbar light>
@@ -124,15 +136,13 @@ const Nav = () => {
                         </InputGroup>
                     </FormGroup>
                 </Form>
-                <Button id="notification" toggle={toggle} className="alarm d-none d-md-none d-lg-block " onClick={
-    getRequestSenderImg}>
+                <Button id="notification" toggle={toggle} className="alarm d-none d-md-none d-lg-block ">
                     <div className="noti_count">{notify.count}</div>
                     <IoMdNotifications className="notify"/>
                 </Button>
                 <Popover className="pop" target="#notification" toggle={toggle} placement="bottom" isOpen={showPop}>
                     <PopoverHeader className="noti_pop_header">welcome</PopoverHeader>
-                    <PopoverBody className="noti_pop_body">{/* 
-                    {request.map((data, key) => { */}
+                    <PopoverBody className="noti_pop_body">
                         {eachSenderId.map((d, key) => {
                             return (
                                 <div className="pop_over_body" key={key}>
@@ -146,18 +156,17 @@ const Nav = () => {
                                     </Media>
                                     <div className="btns">
                                         <Button className="accept_btn">+</Button>
-                                        <Button className="accept_btn">-</Button>
+                                        <Button className="accept_btn" onClick={() => {deleteSenderId(d.userId); updateSenderIdAfterRejection(d.userId)}}>-</Button>
                                     </div>
                                 </div>
                             )
-                        })}{/* 
-                    })} */}
+                        })}
                     </PopoverBody>
                 </Popover>
                 {profilePicture.map((data, key) => {
                     return(
-                        <>
-                        <Media className="dash_media" id="userName" key={key}>
+                        <div key={key}>
+                        <Media className="dash_media" id="userName" >
                             <Media left middle className="img_media">
                                 <Media object src={`data:${data.pics.contentType};base64,${Buffer.from(data.pics.data.data).toString('base64')}`} className="passport" alt="User image"></Media>
                             </Media>
@@ -168,7 +177,7 @@ const Nav = () => {
                         <Tooltip className="media-tip" toggle={toggleShow} target="userName" placement="top" isOpen={show} >
                             <h6>{userName.name}</h6>
                         </Tooltip>
-                        </>
+                        </div>
                     )
                 })}
             </Navbar>
