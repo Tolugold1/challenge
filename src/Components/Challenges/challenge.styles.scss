@@ -1,176 +1,185 @@
 .challengeComponent {
-    display: flex;
     color: #363b64;
     height: auto;
 
-    .sidebar {
-        position: fixed;
-        z-index: 100;
-        
+    .ch {
+        display: flex;
 
-    }
-    .cha_container {
-        flex: 7;
-        margin-left: 300px;
-        background-color: #F1F8FF;
-        height: auto;
-
-        .ch {
-            display: flex;
-
-            .h1 {
-                float: left;
-                font-size: 1em;
-                margin: 10px 0px 10px 0px;
-                margin-right: auto;
+        .h1 {
+            float: left;
+            font-size: 1em;
+            margin: 10px 0px 10px 0px;
+            margin-right: auto;
+        }
+        .alarm {
+            padding: 3px;
+            border: 0px;
+            background-color: white;
+            margin: -3px 10px 0px;
+            border-radius: 10px;
+    
+            .notify {
+                width: 1em;
+                height: 1em
             }
-            .alarm {
-                padding: 3px;
-                border: 0px;
-                background-color: white;
-                margin: -3px 10px 0px;
-                border-radius: 10px;
-        
-                .notify {
-                    width: 1em;
-                    height: 1em
-                }
-                .noti_count {
-                    background-color: red;
-                    position: absolute; 
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 50%;
-                    color: white;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 2px;
-                    margin-left: 25px;
-                }
+            .noti_count {
+                background-color: red;
+                position: absolute; 
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2px;
+                margin-left: 25px;
             }
         }
-        .challenge_row {
-            margin-top: 30px;
-            align-items: center;
-            
-            .challenge_col1 {
+    }
+    .challenge_row {
+        margin-top: 30px;
+        align-items: center;
+        
+        .challenge_col1 {
 
-                .peer_card {
-                    padding: 5px;
-                    
-                    .peer_card_img {
-                        object-fit: cover;
-                        object-position: center;/* 
-                        width: 200px;
-                        height: 150px; */
+            .peer_card {
+                padding: 5px;
+                
+                .peer_card_img {
+                    object-fit: cover;
+                    object-position: center;/* 
+                    width: 200px;
+                    height: 150px; */
+                }
+                .peer_card_body {
+                    /* 
+                    display: flex; */
+                    align-items: center;
+
+                    .ptitle {
+                        font-size: 1em;
+                        font-weight: 600;
                     }
-                    .peer_card_body {
-                        /* 
-                        display: flex; */
-                        align-items: center;
-
-                        .ptitle {
-                            font-size: 1em;
-                            font-weight: 600;
-                        }
-                        .peer_card_description {
-                            font-size: .8em;
-                            font-weight: 500;
-                        }
-                        .peer_card_btn {
-                            display: flex;
-                            justify-content: center;
-                            .send_request {
-                                background-color: #363b64;
-                            }
+                    .peer_card_description {
+                        font-size: .8em;
+                        font-weight: 500;
+                    }
+                    .peer_card_btn {
+                        display: flex;
+                        justify-content: center;
+                        .send_request {
+                            background-color: #363b64;
                         }
                     }
                 }
-                .default_card {
-                    background-color: transparent;
-                    .req_list_heading {
-                        display: flex;
-                        align-items: center;
+            }
+            .default_card {
+                background-color: transparent;
+                .req_list_heading {
+                    display: flex;
+                    align-items: center;
 
-                        .listOfreq {
-                            margin-left: auto;
-                            background-color: hsl(233, 30%, 30%, 0.9);
-                            color: white;
+                    .listOfreq {
+                        margin-left: auto;
+                        background-color: hsl(233, 30%, 30%, 0.9);
+                        color: white;
 
-                            &:hover {
-                                background-color: #363b64;
-                            }
+                        &:hover {
+                            background-color: #363b64;
                         }
                     }
-                    .req_list {
-                            
-                        list-style-type: square;
-                        .lst {
-                            margin-top: 15px;
+                }
+                .req_list {
+                        
+                    list-style-type: square;
+                    .lst {
+                        margin-top: 15px;
 
+                        .reqSent {
+                            display: flex;
                             .reqSentMedia {
                                 display: flex;
                                 align-items: center;
                                 
                                 .sender_img {
-                                    margin-right: 20px;
+                                    margin-right: 5px;
                                 }
                                 .m_body {
                                     color:#363b64;
                                     font-weight: 600;
-
-                                    .github {
-                                        color: grey;
+                                    display: flex;
+                                    align-items: center;
+                                    
+                                    .req_txt {
+                                        display: block;
+                                        
+                                        .req_user_gitname {
+                                            display: block;
+                                            .github {
+                                                color: grey;
+                                            }
+                                        }
+                                        
                                     }
                                 }
                             }
+                            
+                            .status_div {
+                                margin-left: auto;
+                                display: flex;
+                                align-items: center;
+                                .status {
+                                    font-size: .8em;
+                                }
+                            }
                         }
+                        
                     }
                 }
             }
-
-            .challenge_col2 {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .heading1 {
-                    font-size: .8em;
-                    text-align: center;
-                    text-align-last: center;
-                }
-                .challenge_form {
-                    display: flex;
-                    justify-content: center;
-                }
-                .reveal {
-                    color: red;
-                    font-weight: 600;
-                    display: block;
-                    font-size: .8em;
-                    text-align: center;
-                }
-                .dontReveal {
-                    display: none;
-                }
-                .btnDiv {
-                    display: flex;
-                    justify-content: center;
-
-                    .search_btn {
-                        font-size: 1em;
-                        font-weight: 500;
-                        background-color: hsl(233, 30%, 30%, 0.6);
-                        margin-right: auto;
-                        margin-left: auto;
-                    }
-                }
-            }
-            
         }
+
+        .challenge_col2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .heading1 {
+                font-size: .8em;
+                text-align: center;
+                text-align-last: center;
+            }
+            .challenge_form {
+                display: flex;
+                justify-content: center;
+            }
+            .reveal {
+                color: red;
+                font-weight: 600;
+                display: block;
+                font-size: .8em;
+                text-align: center;
+            }
+            .dontReveal {
+                display: none;
+            }
+            .btnDiv {
+                display: flex;
+                justify-content: center;
+
+                .search_btn {
+                    font-size: 1em;
+                    font-weight: 500;
+                    background-color: hsl(233, 30%, 30%, 0.6);
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+            }
+        }
+        
     }
     @media (min-width: 768px) and (max-width: 979px) {
-        .cha_container {
+        .challengeComponent {
             height: auto;
             .challenge_col2 {
                 margin-top: 20px;
@@ -179,8 +188,7 @@
 
     }
     @media (min-width: 979px) and (max-width: 1199px) {
-        .cha_container {
-            margin-left: 255px;
+        .challengeComponent {
 
             .ch {
                 display: flex;
@@ -221,8 +229,7 @@
         }
     }
     @media (min-width: 768px) and (max-width: 979px) {
-        .cha_container {
-            margin-left: 205px;
+        .challengeComponent {
 
             .ch {
                 display: flex;
@@ -264,8 +271,7 @@
         }
     }
     @media(max-width: 767px) {
-        .cha_container {
-            margin-left: 155px;
+        .challengeComponent {
 
             .ch {
                 display: flex;

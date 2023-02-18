@@ -16,23 +16,86 @@ import "./Dashboard.styles.scss";
 
 
 const DashboardPage = () => {
-
+    const [ followersNumber, setFollowersNumber ] = useState("");
+    const [ reposNumber, setReposNumber ] = useState("");
+    const [ dailyCommit, setDailyCommit ] = useState([]);
+    const [ weeklyCommit, setWeeklyCommit ] = useState([]);
+    const [ reposNames, setRepoNames ] = useState([]);
+    const [ commitsPerRepo, setCommitPerRepo ] = useState([]);
     useEffect(() => {
-        personalRequestAcct()
+        const getUserGithubDetails = () => {
+            const githubname = localStorage.getItem("userGitHubAcct")
+            const bearer = "Bearer " + localStorage.getItem("token")
+            fetch(`https://localhost:3443/github/${githubname}`, {
+                headers: {
+                    "Content-Type": "application",
+                    "Authorization": bearer
+                }
+            })
+            .then(resp => resp.json())
+            .then(resp => {
+                setFollowersNumber(resp.followers);
+                setReposNumber(resp.public_repos)
+            })
+        };
+    
+        const repository = () => {
+            console.log("resp")
+            const githubname = localStorage.getItem("userGitHubAcct")
+            const bearer = "Bearer " + localStorage.getItem("token")
+            fetch(`https://localhost:3443/repo/${githubname}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": bearer
+                }
+            })
+            .then(resp => resp.json())
+            .then(resp => {
+                console.log(resp)
+                setRepoNames(resp);
+                for (let i = 0; i <= resp.length - 1; i++) {
+                    getNumberOfCommitPerRepo(resp[i].name)
+                }
+            })
+        }
+        let number = []
+        const getNumberOfCommitPerRepo = (reponame) => {
+            const githubname = localStorage.getItem("userGitHubAcct")
+            fetch(`https://api.github.com/repos/${githubname}/${reponame}/commits`)
+            .then(resp => resp.json())
+            .then(resp => {
+                setCommitPerRepo(resp.length)
+                number.push({l: resp.length})
+            })
+        }
+        setDailyCommit(number)
+        getUserGithubDetails();
+        if (localStorage.getItem("repository") != null) {
+            getDailyCommitStat();
+        }
+        repository();
     }, [])
 
-    const personalRequestAcct = () => {
+    console.log("reposNames", reposNames)
+
+    console.log("dailyCommit", dailyCommit)
+
+    const getDailyCommitStat = () => {
+        const githubname = localStorage.getItem("userGitHubAcct")
+        const repoName = localStorage.getItem("repository")
         const bearer = "Bearer " + localStorage.getItem("token")
-        fetch("https://localhost:3443/request", {
-            method: "POST",
+        fetch(`https://localhost:3443/github/${githubname}/${repoName}`, {
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application",
                 "Authorization": bearer
             }
         })
-        .then(resp => {resp.json()}, (err) => console.log(err))
-        .catch(err => console.log(err))
-    }
+        .then(resp => resp.json())
+        .then(resp => {
+            console.log(resp, "weekly")
+            setWeeklyCommit(resp)
+        })
+    };
 
     const [ pieData, setPieData ] = useState({
         labels: PieData.map((data) => data.label),
@@ -48,152 +111,150 @@ const DashboardPage = () => {
         }]
     });
 
-    const [ barData, setBarData ] = useState({
-        labels: BarData.map((data) => data.date),
+    const barData = {
+        labels: reposNames.map((data) => data.name),
         datasets: [{
-            label: "likes",
-            data: BarData.map((data) => data.data),
+            label: "commits",
+            data: dailyCommit.map((data) => data.l),
             backgroundColor: BarData.map(data => data.bg),
             barThickness: 12,
             borderRadius: 10
-        },
+        }/* ,
         {
             label: "comments",
-            data: BarData1.map((data) => data.data),
+            data: dailyCommit.map((data) => data.l),
             backgroundColor: BarData1.map(data => data.bg),
             barThickness: 12,
             borderRadius: 10
         },
         {
             label: "shares",
-            data: BarData2.map((data) => data.data),
+            data: dailyCommit.map((data) => data.l),
             backgroundColor: BarData2.map(data => data.bg),
             barThickness: 12,
             borderRadius: 10
-        }]
-    });
+        } */]
+    };
 
     return(
-        <div className="Dashboard">
-            <div className="sideBar"><SideNav /></div>
-            <Container className="bd">
-                <div className="Dashboard_body">
-                    <Nav />
-                </div>
-                <Row>
-                    {/* fisrt colume for the number and chart*/}
-                    <Col lg="8" md="12" sm="12" className="col1">
-                        <Row>
-                            <Col lg="4" md="12" sm="12" className="user_numbers">
-                                <Card className="card-card">
-                                    <CardBody className="body_B">
-                                        <div className="head">
-                                            <h5 className="head_text">Daily Commit</h5>
-                                            <AiFillQuestionCircle style={{color: "#CCCCCC", width: "30px", height: "30px"}}/>
-                                        </div>
-                                        <p className="stat">200k</p>
-                                        <p className="graph"><BiTrendingUp  className="icon_bg"/> + 50,3% <span style={{color: "#CCCCCC"}}>vs last week</span></p>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col lg="4" md="12" sm="12" className="user_numbers">
-                                <Card className="card-card">
-                                    <CardBody className="body_B">
-                                        <div className="head">
-                                            <h5  className="head_text">Followers</h5>
-                                            <AiFillQuestionCircle style={{color: "#CCCCCC", width: "30px", height: "30px"}}/>
-                                        </div>
-                                        <p className="stat">1.230</p>
-                                        <p className="graph"><BiTrendingUp  className="icon_bg"/> + 50,3% <span style={{color: "#CCCCCC"}}>vs last week</span></p>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                            <Col lg="4" md="12" sm="12" className="user_numbers">
-                                <Card className="card-card">
-                                    <CardBody className="body_B">
-                                        <div className="head">
-                                            <h5  className="head_text">Repository</h5>
-                                            <AiFillQuestionCircle style={{color: "#CCCCCC", width: "30px", height: "30px"}}/>
-                                        </div>
-                                        <p className="stat">12</p>
-                                        <p className="graph1"><BiTrendingDown  className="icon_bg1"/> + 50,3% <span style={{color: "#CCCCCC"}}>vs last week</span></p>
-                                    </CardBody>
-                                </Card>                             
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col lg="12" md="12" sm="12">
-                                <Card className="main_stat_card">
-                                    <CardBody>
-                                        <p className="main_stat_heading">GitHub Statistics</p>
-                                        <Row className="subheading">
-                                            <Col className="avg_like">
-                                                <div className="avg_like_icon"><BsFillSuitHeartFill className="like_icon"/></div>
-                                                <div className="num">7.006 <span>+ 10,3 %</span>
-                                                    <p className="avg_text">Avg likes this week</p>
-                                                </div>
-                                            </Col>
-                                            <Col className="avg_like" >
-                                                <div className="avg_comment_icon"><RiMessage2Fill className="comment_icon"/></div>
-                                                <div className="comment_num">7.006 <span>+ 10,3 %</span>
-                                                    <p className="avg_comment">Avg comments this week</p>
-                                                </div>
-                                            </Col>
-                                            <Col className="avg_like">
-                                                <div className="avg_share_icon"><TfiSharethisAlt className="share_icon"/></div>
-                                                <div className="share_num">7.006 <span>+ 10,3 %</span>
-                                                    <p className="avg_share">Avg share this week</p>
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                        <div className="barChrt">
-                                            <BarChart data={barData} />
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Col>
-                    {/* pie chart column */}
-                    <Col lg="4" md="12" sm="12" className="col2">
-                        <Row>
-                            <Col sm="12" md="12" lg="12">
-                                <Card className="card-card1">
-                                    <CardBody className="body1">
-                                        <div>
-                                            <p className="stat_text">GitHub Statistics</p>
-                                            <div className="pie-pie">
-                                                <DChart data={pieData} />
+        <Container className="Dashboard">
+            <Row>
+                {/* fisrt colume for the number and chart*/}
+                <Col lg="8" md="12" sm="12" className="col1">
+                    <Row>
+                        <Col lg="4" md="12" sm="12" className="user_numbers">
+                            <Card className="card-card">
+                                <CardBody className="body_B">
+                                    <div className="head">
+                                        <h5 className="head_text">Weekly Commit</h5>
+                                        <AiFillQuestionCircle style={{color: "#CCCCCC", width: "30px", height: "30px"}}/>
+                                    </div>
+                                    <p className="stat">{ weeklyCommit }</p>
+                                    <p className="graph"><BiTrendingUp  className="icon_bg"/> + 50,3% <span style={{color: "#CCCCCC"}}>vs last week</span></p>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                        <Col lg="4" md="12" sm="12" className="user_numbers">
+                            <Card className="card-card">
+                                <CardBody className="body_B">
+                                    <div className="head">
+                                        <h5  className="head_text">Followers</h5>
+                                        <AiFillQuestionCircle style={{color: "#CCCCCC", width: "30px", height: "30px"}}/>
+                                    </div>
+                                    <p className="stat">{followersNumber}</p>
+                                    <p className="graph"><BiTrendingUp  className="icon_bg"/> + 50,3% <span style={{color: "#CCCCCC"}}>vs last week</span></p>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                        <Col lg="4" md="12" sm="12" className="user_numbers">
+                            <Card className="card-card">
+                                <CardBody className="body_B">
+                                    <div className="head">
+                                        <h5  className="head_text">Repository</h5>
+                                        <AiFillQuestionCircle style={{color: "#CCCCCC", width: "30px", height: "30px"}}/>
+                                    </div>
+                                    <p className="stat">{reposNumber}</p>
+                                    <p className="graph1"><BiTrendingDown  className="icon_bg1"/> + 50,3% <span style={{color: "#CCCCCC"}}>vs last week</span></p>
+                                </CardBody>
+                            </Card>                             
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col lg="12" md="12" sm="12">
+                            <Card className="main_stat_card">
+                                <CardBody>
+                                    <p className="main_stat_heading">GitHub Statistics</p>
+                                    <Row className="subheading">
+                                        <Col className="avg_like">
+                                            <div className="avg_like_icon"><BsFillSuitHeartFill className="like_icon"/></div>
+                                            <div className="num">7.006 <span>+ 10,3 %</span>
+                                                <p className="avg_text">number of commits</p>
                                             </div>
-                                            <div className="chart_stat">
-                                                <p className="chart_text">2,9 M </p>
-                                                <div className="d-flex align-items-center chart_text1"><BiTrendingUp  className="icon_bg1" style={{width: "20px", height:"20px"}}/><span className="stat_stat">+ 300K</span></div>
+                                        </Col>
+                                        <Col className="avg_like" >
+                                            <div className="avg_comment_icon"><RiMessage2Fill className="comment_icon"/></div>
+                                            <div className="comment_num">7.006 <span>+ 10,3 %</span>
+                                                <p className="avg_comment">Avg comments this week</p>
                                             </div>
-                                            <div className="male_stat">
-                                                <p className="male-text">
-                                                    40 % <br /> <span style={{fontSize: '15px'}}>Male</span>
-                                                </p>
+                                        </Col>
+                                        <Col className="avg_like">
+                                            <div className="avg_share_icon"><TfiSharethisAlt className="share_icon"/></div>
+                                            <div className="share_num">7.006 <span>+ 10,3 %</span>
+                                                <p className="avg_share">Avg share this week</p>
                                             </div>
-                                            <div className="stat_type">
-                                                <div className="d-flex">
-                                                    <div className="male">
-                                                        <div className="male_color"></div><p className="male_text">Male</p>
-                                                    </div>
-                                                    <div className="male">
-                                                        <div className="female_color"></div> <p className="male_text">Female</p>
-                                                    </div>
+                                        </Col>
+                                    </Row>
+                                    <div className="barChrt">
+                                        <BarChart data={barData} />
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                </Col>
+                {/* pie chart column */}
+                <Col lg="4" md="12" sm="12" className="col2">
+                    <Row>
+                        <Col sm="12" md="12" lg="12">
+                            <Card className="card-card1">
+                                <CardBody className="body1">
+                                    <div>
+                                        <p className="stat_text">GitHub Statistics</p>
+                                        <div className="pie-pie">
+                                            <DChart data={pieData} />
+                                        </div>
+                                        <div className="chart_stat">
+                                            <p className="chart_text">2,9 M </p>
+                                            <div className="d-flex align-items-center chart_text1"><BiTrendingUp  className="icon_bg1" style={{width: "20px", height:"20px"}}/><span className="stat_stat">+ 300K</span></div>
+                                        </div>
+                                        <div className="male_stat">
+                                            <p className="male-text">
+                                                40 % <br /> <span style={{fontSize: '15px'}}>Male</span>
+                                            </p>
+                                        </div>
+                                        <div className="stat_type">
+                                            <div className="d-flex">
+                                                <div className="male">
+                                                    <div className="male_color"></div><p className="male_text">Male</p>
+                                                </div>
+                                                <div className="male">
+                                                    <div className="female_color"></div> <p className="male_text">Female</p>
                                                 </div>
                                             </div>
-                                            <p className="btm_text" style={{color: "#CCCCCC"}}>Last 30 days <MdKeyboardArrowDown /> </p>
                                         </div>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+                                        <p className="btm_text" style={{color: "#CCCCCC"}}>Last 30 days <MdKeyboardArrowDown /> </p>
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm="12" md="12" lg="12">
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

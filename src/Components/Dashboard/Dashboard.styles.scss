@@ -1,181 +1,327 @@
 .Dashboard {
-    display: flex;
     font-size: 20px;
 
-    .sideBar {
-        position: fixed;
-        z-index: 100;
-    }
-    .bd {
-        flex: 7;
-        margin-left: 300px;
-        background-color: #F1F8FF;
+    .col1 {
 
-        .col1 {
+        .user_numbers {
+            .card-card {
+                border: 0px;
+                .body_B {
+                
+                    .head {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
 
-            .user_numbers {
-                .card-card {
-                    border: 0px;
-                    .body_B {
-                    
-                        .head {
-                            display: flex;
-                            align-items: center;
-                            width: 100%;
-
-                            .head_text {
-                                margin-right: auto;
-                                font-size: 15px;
-                                font-weight: 500;
-                                color:  #363b64;
-                            }
-                        }
-                        .stat {
-                            font-size: 1em;
-                            font-weight: 800;
+                        .head_text {
+                            margin-right: auto;
+                            font-size: 15px;
+                            font-weight: 500;
                             color:  #363b64;
                         }
-                        .graph {
-                            color: #567EF7;
-                            font-weight: 700;
-                            font-size: 15px;
+                    }
+                    .stat {
+                        font-size: 1em;
+                        font-weight: 800;
+                        color:  #363b64;
+                    }
+                    .graph {
+                        color: #567EF7;
+                        font-weight: 700;
+                        font-size: 15px;
 
-                            .icon_bg {
-                                background-color: #E4EAFE;
-                            }
-                        }
-                        .graph1 {
-                            color: #ED6A6A;
-                            font-weight: 700;
-                            font-size: 15px;
-                            
-                            .icon_bg1 {
-                                background-color: #FCE4E4;
-                            }
-
+                        .icon_bg {
+                            background-color: #E4EAFE;
                         }
                     }
+                    .graph1 {
+                        color: #ED6A6A;
+                        font-weight: 700;
+                        font-size: 15px;
+                        
+                        .icon_bg1 {
+                            background-color: #FCE4E4;
+                        }
+
+                    }
                 }
-                
+            }
+            
+        }
+    }
+    .main_stat_card {
+        margin-top: 20px;
+        border: 0px;
+        border-radius: 20px;
+
+        .main_stat_heading {
+            font-size: 1em;
+            color:#363b64;
+            font-weight: 500;
+        };
+
+        .subheading {
+            align-items: center;
+
+            .avg_like {
+                display: flex;
+                margin-right: 5px;
+
+                .avg_like_icon, .avg_comment_icon, .avg_share_icon {
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    background-color: #ECDEFF;
+                    margin-right: 8px;
+
+                    .like_icon {
+                        color: #A158FF;
+                    }
+                }
+                .num {
+                    color:#363b64;
+                    font-weight: 500;
+                    span {
+                        color: #6B8EF8;
+                    }
+                    .avg_text {
+                        font-weight: 400;
+                        color: #999999;
+                    }
+                }
+                .avg_comment_icon {
+                    background-color: #FFF3E0;
+
+                    .comment_icon {
+                        color: #E2B931;
+                    }
+                }
+                .comment_num {
+                    color:#363b64;
+                    font-weight: 500;
+                    span {
+                        color: #EB5757;
+                    }
+                    .avg_comment {
+                        font-weight: 400;
+                        color: #999999;
+                    }
+                }
+                .avg_share_icon {
+                    background-color: #D3E7FF;
+
+                    .share_icon {
+                        color: #567EF7;
+                    }
+                }
+                .share_num {
+                    color:#363b64;
+                    font-weight: 500;
+
+                    span {
+                        color: #6B8EF8;
+                    }
+                    .avg_share {
+                        font-weight: 400;
+                        color: #999999;
+                    }
+                }
             }
         }
-        .main_stat_card {
-            margin-top: 20px;
+        .barChrt {
+            margin-top: 30px;
+            width: auto;
+            height:367px;
+        }
+    }
+    .col2 {
+
+        .card-card1 {
             border: 0px;
-            border-radius: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
 
-            .main_stat_heading {
-                font-size: 1em;
-                color:#363b64;
-                font-weight: 500;
-            };
-
-            .subheading {
+            .body1 {
+                display: flex;
                 align-items: center;
 
-                .avg_like {
+                .stat_text {
+                    font-weight: 600;
+                    font-size: 1em;
+                    color:  #363b64;
+                    margin-top: 20px;
+                }
+                .pie-pie {
+                    width: 300px;
+                    height: 300px;
+                }
+                .chart_stat {
+                    margin-left: 110px;
+                    margin-top: -190px;
+                    position: absolute;
+
+                    .chart_text {
+                        text-align: center;
+                        font-size: 30px;
+                        color:  #363b64;
+                        font-weight: 700;
+                    }
+                    .chart_text1 {
+                        color:#567EF7;
+
+                        .icon_bg1 {
+                            background-color: #E4EAFE;
+                            padding: 3px;
+                        }
+                        .stat_stat {
+                            font-weight: 500;
+                            font-size: 17px;
+                        }
+                    }
+                }
+                .male_stat {
+                    margin-left: 20px;
+                    margin-top: -120px;
+                    z-index: 10;
+                    background-color: white;
+                    position: absolute;
                     display: flex;
-                    margin-right: 5px;
+                    justify-content: center;
+                    align-items: center;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+                    -webkit-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+                    -moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
 
-                    .avg_like_icon, .avg_comment_icon, .avg_share_icon {
-                        width: 30px;
-                        height: 30px;
+                    .male-text {
+                        text-align: "center";
+                        padding: 15px;
+                        font-size: -1em;
+                    }
+                }
+                .stat_type {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: -20px;
+
+                    .male {
                         display: flex;
-                        justify-content: center;
                         align-items: center;
-                        border-radius: 50%;
-                        background-color: #ECDEFF;
-                        margin-right: 8px;
+                        margin-right: 20px;
 
-                        .like_icon {
-                            color: #A158FF;
+                        .male_color {
+                            width: 20px;
+                            height: 20px;
+                            background-color: #8BBFFD;
+                            border-radius: 50%;
+                            margin-right: 9px;
                         }
-                    }
-                    .num {
-                        color:#363b64;
-                        font-weight: 500;
-                        span {
-                            color: #6B8EF8;
+                        .male_text {
+                            display: flex;
+                            margin-top: 15px;
+                            font-size: 15px;
                         }
-                        .avg_text {
-                            font-weight: 400;
-                            color: #999999;
-                        }
-                    }
-                    .avg_comment_icon {
-                        background-color: #FFF3E0;
-
-                        .comment_icon {
-                            color: #E2B931;
-                        }
-                    }
-                    .comment_num {
-                        color:#363b64;
-                        font-weight: 500;
-                        span {
-                            color: #EB5757;
-                        }
-                        .avg_comment {
-                            font-weight: 400;
-                            color: #999999;
-                        }
-                    }
-                    .avg_share_icon {
-                        background-color: #D3E7FF;
-
-                        .share_icon {
-                            color: #567EF7;
-                        }
-                    }
-                    .share_num {
-                        color:#363b64;
-                        font-weight: 500;
-
-                        span {
-                            color: #6B8EF8;
-                        }
-                        .avg_share {
-                            font-weight: 400;
-                            color: #999999;
+                        .female_color {
+                            background-color: #FFC152;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                            margin-right: 9px;
                         }
                     }
                 }
             }
-            .barChrt {
-                margin-top: 30px;
-                width: auto;
-                 height:367px;
-            }
         }
-        .col2 {
+        .cmt {
+            margin-top: 20px;
+        }
+    }
+}
 
+@media (min-width: 1200px) {
+    .Dashboard{
+        .col2{
             .card-card1 {
-                border: 0px;
-                background-color: #FFFFFF;
-                border-radius: 10px;
 
                 .body1 {
-                    display: flex;
-                    align-items: center;
 
                     .stat_text {
                         font-weight: 600;
                         font-size: 1em;
                         color:  #363b64;
                         margin-top: 20px;
+                        margin-left: 0px;
                     }
                     .pie-pie {
                         width: 300px;
                         height: 300px;
                     }
+                    .btm_text {
+                        text-align: center;
+                        margin-top: 15px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }          
+        }
+    }
+}
+@media (min-width: 979px) and (max-width: 1199px) {
+    .Dashboard {
+        .col1 {
+            .user_numbers {
+                margin-top: 10px;
+            }
+            .main_stat_card {
+
+                .subheading {
+
+                    .avg_like {
+
+                        .num, .comment_num, .avg_comment, .share_num, .avg_share, .avg_text, span  {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+                .barChrt {
+                    margin-top: 30px;
+                    width: auto;
+                    height:267px;
+                }
+            }
+        }
+        .col2 {
+            .card-card1 {
+                margin-top: 10px;
+                border-radius: 20px;
+                .body1 {
+                    display: flex;
+                    justify-content: center;
+                    .stat_text {
+                        font-weight: 600;
+                        font-size: 1em;
+                        color:  #363b64;
+                        margin-top: 20px;
+                        margin-left: 15px;
+                    }
+                    .pie-pie {
+                        width: 230px;
+                        height: 230px;
+                    }
                     .chart_stat {
-                        margin-left: 110px;
-                        margin-top: -190px;
+                        margin-left: 80px;
+                        margin-top: -140px;
                         position: absolute;
 
                         .chart_text {
                             text-align: center;
-                            font-size: 30px;
+                            font-size: 1.5rem;
                             color:  #363b64;
                             font-weight: 700;
                         }
@@ -188,203 +334,36 @@
                             }
                             .stat_stat {
                                 font-weight: 500;
-                                font-size: 17px;
-                            }
-                        }
-                    }
-                    .male_stat {
-                        margin-left: 20px;
-                        margin-top: -120px;
-                        z-index: 10;
-                        background-color: white;
-                        position: absolute;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 80px;
-                        height: 80px;
-                        border-radius: 50%;
-                        box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-                        -webkit-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-                        -moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-
-                        .male-text {
-                            text-align: "center";
-                            padding: 15px;
-                            font-size: -1em;
-                        }
-                    }
-                    .stat_type {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        margin-top: -20px;
-
-                        .male {
-                            display: flex;
-                            align-items: center;
-                            margin-right: 20px;
-
-                            .male_color {
-                                width: 20px;
-                                height: 20px;
-                                background-color: #8BBFFD;
-                                border-radius: 50%;
-                                margin-right: 9px;
-                            }
-                            .male_text {
-                                display: flex;
-                                margin-top: 15px;
-                                font-size: 15px;
-                            }
-                            .female_color {
-                                background-color: #FFC152;
-                                width: 20px;
-                                height: 20px;
-                                border-radius: 50%;
-                                margin-right: 9px;
-                            }
-                        }
-                    }
-                }
-            }
-            .cmt {
-                margin-top: 20px;
-            }
-        }
-    }
-}
-
-@media (min-width: 1200px) {
-    .Dashboard{
-
-        .bd {
-            margin-left: 300px;
-            background-color: #F1F8FF;
-            .col2{
-                .card-card1 {
-
-                    .body1 {
-
-                        .stat_text {
-                            font-weight: 600;
-                            font-size: 1em;
-                            color:  #363b64;
-                            margin-top: 20px;
-                            margin-left: 0px;
-                        }
-                        .pie-pie {
-                            width: 300px;
-                            height: 300px;
-                        }
-                        .btm_text {
-                            text-align: center;
-                            margin-top: 15px;
-                            margin-bottom: 10px;
-                        }
-                    }
-                }          
-            }
-        }
-    }
-}
-@media (min-width: 979px) and (max-width: 1199px) {
-    .Dashboard {
-
-        .bd {
-            margin-left: 255px;
-            background-color: #F1F8FF;
-            .col1 {
-                .user_numbers {
-                    margin-top: 10px;
-                }
-                .main_stat_card {
-
-                    .subheading {
-
-                        .avg_like {
-
-                            .num, .comment_num, .avg_comment, .share_num, .avg_share, .avg_text, span  {
                                 font-size: 1rem;
                             }
                         }
                     }
-                    .barChrt {
-                        margin-top: 30px;
-                        width: auto;
-                        height:267px;
+                .male_stat {
+                    margin-left: 15px;
+                    margin-top: -100px;
+                    z-index: 10;
+                    background-color: white;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+                    -webkit-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+                    -moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+
+                    .male-text {
+                        text-align: "center";
+                        padding: 10px;
+                        font-size: -1em;
                     }
                 }
-            }
-            .col2 {
-                .card-card1 {
-                    margin-top: 10px;
-                    border-radius: 20px;
-                    .body1 {
-                        display: flex;
-                        justify-content: center;
-                        .stat_text {
-                            font-weight: 600;
-                            font-size: 1em;
-                            color:  #363b64;
-                            margin-top: 20px;
-                            margin-left: 15px;
-                        }
-                        .pie-pie {
-                            width: 230px;
-                            height: 230px;
-                        }
-                        .chart_stat {
-                            margin-left: 80px;
-                            margin-top: -140px;
-                            position: absolute;
-
-                            .chart_text {
-                                text-align: center;
-                                font-size: 1.5rem;
-                                color:  #363b64;
-                                font-weight: 700;
-                            }
-                            .chart_text1 {
-                                color:#567EF7;
-
-                                .icon_bg1 {
-                                    background-color: #E4EAFE;
-                                    padding: 3px;
-                                }
-                                .stat_stat {
-                                    font-weight: 500;
-                                    font-size: 1rem;
-                                }
-                            }
-                        }
-                    .male_stat {
-                        margin-left: 15px;
-                        margin-top: -100px;
-                        z-index: 10;
-                        background-color: white;
-                        position: absolute;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 70px;
-                        height: 70px;
-                        border-radius: 50%;
-                        box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-                        -webkit-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-                        -moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-
-                        .male-text {
-                            text-align: "center";
-                            padding: 10px;
-                            font-size: -1em;
-                        }
-                    }
-                        .btm_text {
-                            text-align: center;
-                            margin-top: 15px;
-                            margin-bottom: 10px;
-                        }
+                    .btm_text {
+                        text-align: center;
+                        margin-top: 15px;
+                        margin-bottom: 10px;
                     }
                 }
             }
@@ -394,100 +373,95 @@
 
 @media (min-width: 768px) and (max-width: 979px) {
     .Dashboard {
+        .col1 {
+            .user_numbers {
+                margin-top: 20px;
+            }
+            .main_stat_card {
 
-        .bd {
-            margin-left: 205px;
-            background-color: #F1F8FF;
-            .col1 {
-                .user_numbers {
-                    margin-top: 20px;
+                .subheading {
+
+                    .avg_like {
+
+                        .num, .comment_num, .avg_comment, .share_num, .avg_share, .avg_text, span  {
+                            font-size: 1rem;
+                        }
+                    }
                 }
-                .main_stat_card {
+                .barChrt {
+                    margin-top: 30px;
+                    width: auto;
+                    height:367px;
+                }
+            }
+        }
+        .col2 {
+            margin-top: 20px;
+            .card-card1 {
+                border-radius: 20px;
+                .body1 {
+                    display: flex;
+                    justify-content: center;
+                    .stat_text {
+                        font-weight: 600;
+                        font-size: 1em;
+                        color:  #363b64;
+                        margin-top: 20px;
+                    }
+                    .pie-pie {
+                        width: 250px;
+                        height: 250px;
+                    }
+                    .chart_stat {
+                        margin-left: 90px;
+                        margin-top: -150px;
+                        position: absolute;
 
-                    .subheading {
+                        .chart_text {
+                            text-align: center;
+                            font-size: 1.5rem;
+                            color:  #363b64;
+                            font-weight: 700;
+                        }
+                        .chart_text1 {
+                            color:#567EF7;
 
-                        .avg_like {
-
-                            .num, .comment_num, .avg_comment, .share_num, .avg_share, .avg_text, span  {
+                            .icon_bg1 {
+                                background-color: #E4EAFE;
+                                padding: 3px;
+                            }
+                            .stat_stat {
+                                font-weight: 500;
                                 font-size: 1rem;
                             }
                         }
                     }
-                    .barChrt {
-                        margin-top: 30px;
-                        width: auto;
-                        height:367px;
+                .male_stat {
+                    margin-left: 15px;
+                    margin-top: -100px;
+                    z-index: 10;
+                    background-color: white;
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+                    -webkit-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+                    -moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
+
+                    .male-text {
+                        text-align: "center";
+                        padding: 5px;
+                        font-size: -1em;
                     }
                 }
-            }
-            .col2 {
-                margin-top: 20px;
-                .card-card1 {
-                    border-radius: 20px;
-                    .body1 {
-                        display: flex;
-                        justify-content: center;
-                        .stat_text {
-                            font-weight: 600;
-                            font-size: 1em;
-                            color:  #363b64;
-                            margin-top: 20px;
-                        }
-                        .pie-pie {
-                            width: 250px;
-                            height: 250px;
-                        }
-                        .chart_stat {
-                            margin-left: 90px;
-                            margin-top: -150px;
-                            position: absolute;
-
-                            .chart_text {
-                                text-align: center;
-                                font-size: 1.5rem;
-                                color:  #363b64;
-                                font-weight: 700;
-                            }
-                            .chart_text1 {
-                                color:#567EF7;
-
-                                .icon_bg1 {
-                                    background-color: #E4EAFE;
-                                    padding: 3px;
-                                }
-                                .stat_stat {
-                                    font-weight: 500;
-                                    font-size: 1rem;
-                                }
-                            }
-                        }
-                    .male_stat {
-                        margin-left: 15px;
-                        margin-top: -100px;
-                        z-index: 10;
-                        background-color: white;
-                        position: absolute;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 70px;
-                        height: 70px;
-                        border-radius: 50%;
-                        box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-                        -webkit-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-                        -moz-box-shadow: -1px -1px 6px 0px rgba(0,0,0,0.75);
-
-                        .male-text {
-                            text-align: "center";
-                            padding: 5px;
-                            font-size: -1em;
-                        }
-                    }
-                        .btm_text {
-                            text-align: center;
-                            margin-top: 15px;
-                            margin-bottom: 10px;
-                        }
+                    .btm_text {
+                        text-align: center;
+                        margin-top: 15px;
+                        margin-bottom: 10px;
                     }
                 }
             }
@@ -496,52 +470,44 @@
 }
 @media (max-width: 767px) {
     .Dashboard {
-        .sideBar {
-            position: fixed;
-            z-index: 100;
-        }
-        .bd {
-            margin-left: 155px;
-            background-color: #F1F8FF;
-            .col1 {
-                .user_numbers {
-                    margin-top: 20px;
-                }
-                .main_stat_card {
+        .col1 {
+            .user_numbers {
+                margin-top: 20px;
+            }
+            .main_stat_card {
 
-                    .subheading {
-                        display: block;
-                        .avg_like {
-                            display: flex;
-                            margin-top: 10px;
-                            justify-content: center;
-                            .num, .comment_num, .avg_comment, .share_num, .avg_share, .avg_text, span  {
-                                font-size: 1rem;
-                            }
+                .subheading {
+                    display: block;
+                    .avg_like {
+                        display: flex;
+                        margin-top: 10px;
+                        justify-content: center;
+                        .num, .comment_num, .avg_comment, .share_num, .avg_share, .avg_text, span  {
+                            font-size: 1rem;
                         }
                     }
-                    .barChrt {
-                        margin-top: 30px;
-                        width: auto;
-                        height:367px;
-                    }
+                }
+                .barChrt {
+                    margin-top: 30px;
+                    width: auto;
+                    height:367px;
                 }
             }
-            .col2 {
-                margin-top: 20px;
-                .card-card1 {
+        }
+        .col2 {
+            margin-top: 20px;
+            .card-card1 {
 
-                    .body1 {
+                .body1 {
 
-                        .stat_text {
-                            text-align: center;
-                            margin-bottom: 10px;
-                        }
-                        .btm_text {
-                            text-align: center;
-                            margin-top: 15px;
-                            margin-bottom: 10px;
-                        }
+                    .stat_text {
+                        text-align: center;
+                        margin-bottom: 10px;
+                    }
+                    .btm_text {
+                        text-align: center;
+                        margin-top: 15px;
+                        margin-bottom: 10px;
                     }
                 }
             }

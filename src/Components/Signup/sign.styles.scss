@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    height: 100vh;
     .sign_row {
-
+        
+        margin: auto ;
         .sign_col1 {
             margin: auto;
             justify-items: center;
@@ -179,7 +180,17 @@
 
             }
         }
-        @media (max-width: 767px) {
+    }
+}
+
+@media (max-width: 767px) {
+    .Sign_up {
+        display: flex;
+        justify-content: center;
+        .sign_row {
+            justify-content: center;
+            margin-top: auto;
+            margin-bottom: auto;
             .sign_col1 {
                 display: flex;
                 justify-content: center;
@@ -188,12 +199,18 @@
                 .col1_inner {
                     margin: 0px auto;
                     text-align: center;
+                    .name {
+                        margin-left: 25px;
+                    }
                 }
             }
             .sign_col2 {
                 margin-top: 50px;
-                justify-content: center;
                 display: flex;
+                justify-content: center;
+                .sign_form {
+                    margin-left: 70px;
+                }
             }
         }
     }

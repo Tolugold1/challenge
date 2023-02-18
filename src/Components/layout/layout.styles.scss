@@ -1,0 +1,67 @@
+.layout {
+    display: flex;
+
+    .sidebar {
+        position: fixed;
+        z-index: 100;
+    }
+
+    .challenge_nav {
+        margin-left: 300px;
+        background-color: #F1F8FF;
+        flex: 7;
+    }
+}
+
+@media (min-width: 979px) and (max-width: 1199px) {
+    .layout {
+        display: flex;
+    
+        .sidebar {
+            position: fixed;
+            z-index: 100;
+        }
+    
+        .challenge_nav {
+            margin-left: 255px;
+            background-color: #F1F8FF;
+            flex: 7;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .layout {
+        display: flex;
+    
+        .sidebar {
+            position: fixed;
+            z-index: 100;
+        }
+    
+        .challenge_nav {
+            margin-left: 205px;
+            background-color: #F1F8FF;
+            flex: 7;
+        }
+    }
+}
+@media (max-width: 767px) {
+    .layout {
+        display: flex;
+    
+        .sidebar {
+            position: fixed;
+            z-index: 100;
+        }
+    
+        .challenge_nav {
+            margin-left: 155px;
+            background-color: #F1F8FF;
+            .headerNav {
+                position: relative;
+                margin-top: 0px;
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@ import "./Navbar.styles.scss";
 const Nav = () => {
 
     const location = useLocation();
-    let path = [ "/dashboard", "/challenge", "/post schedule" ];
+    let path = [ "/dashboard", "/challenge", "/postschedule" ];
     let exactPath;
     if (location.pathname === path[0]) {
         exactPath = "Dashboard";
@@ -35,6 +35,32 @@ const Nav = () => {
     const year = new Date().getFullYear()
 
     useEffect(() => {
+        const personalRequestAcct = () => {
+            const bearer = "Bearer " + localStorage.getItem("token")
+            fetch("https://localhost:3443/request", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": bearer
+                }
+            })
+            .then(resp => {resp.json()}, (err) => console.log(err))
+            .catch(err => console.log(err))
+        }; 
+        personalRequestAcct()
+        const personalAcceptAcct = () => {
+            const bearer = "Bearer " + localStorage.getItem("token")
+            fetch("https://localhost:3443/accept", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": bearer
+                }
+            })
+            .then(resp => {resp.json()}, (err) => console.log(err))
+            .catch(err => console.log(err))
+        }; 
+        personalAcceptAcct()
         let s = []
         const notification = () => {
             const bearer = "Bearer " + localStorage.getItem("token");
@@ -70,6 +96,7 @@ const Nav = () => {
         getUserDetails();
     }, [])
 
+
     const getUserdata = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
         fetch("https://localhost:3443/users/user", {
@@ -94,7 +121,11 @@ const Nav = () => {
         })
         .then(resp => resp.json())
         .then((r) => {
+            console.log("r", r.status[0])
             setProfilePicture(r.status)
+            localStorage.setItem("userGitHubAcct", r.status[0].githubname)
+            localStorage.setItem("repository", r.status[0].github_repo_name
+            )
         })
     }
 
@@ -110,17 +141,17 @@ const Nav = () => {
         .then(resp => resp.json)
     }
 
-    const updateSenderIdAfterRejection = (senderId) => {
+    const AcceptedARequest = (id) => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://localhost:3443/request/${senderId}`, {
-            method: "PUT",
+        fetch(`https://localhost:3443/accept/${id}`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
             }
         })
-        .then(resp => resp.json)
-    }
+        .then(resp => resp.json())
+    };
 
     return(
         <div className="dash_nav">
@@ -155,8 +186,8 @@ const Nav = () => {
                                         </Media>
                                     </Media>
                                     <div className="btns">
-                                        <Button className="accept_btn">+</Button>
-                                        <Button className="accept_btn" onClick={() => {deleteSenderId(d.userId); updateSenderIdAfterRejection(d.userId)}}>-</Button>
+                                        <Button className="accept_btn" onClick={AcceptedARequest(d.userId)}>+</Button>
+                                        <Button className="accept_btn" onClick={() => {deleteSenderId(d.userId)}}>-</Button>
                                     </div>
                                 </div>
                             )

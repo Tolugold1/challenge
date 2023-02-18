@@ -36,6 +36,9 @@ const SideNav = () => {
     const logOut = () => {
         alert("Are you sure?");
         localStorage.removeItem("token");
+        localStorage.removeItem("myId");
+        localStorage.removeItem("repos_url");
+        localStorage.removeItem("number_of_notification");
         fetch("https://localhost:3443/users/logout", {
             method: "POST",
             headers: {
