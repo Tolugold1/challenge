@@ -70,9 +70,9 @@ const SignIn = () => {
         .then((resp) => {
             if (resp.success === true) { // authenticate and search if user has filled in the details form, if user details found, redirect to dashboard else redirect to details form page.
                 setRespo(true);
-                window.location.assign("http://localhost:3001/dashboard" || "https://challenge-tolugold1.vercel.app/dashboard")
+                window.location.assign("https://challenge-tolugold1.vercel.app/dashboard")
             } else {
-                window.location.assign("http://localhost:3001/details" || "https://challenge-tolugold1.vercel.app/details")
+                window.location.assign("https://challenge-tolugold1.vercel.app/details")
             }
         })
     }

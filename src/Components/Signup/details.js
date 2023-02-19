@@ -31,9 +31,9 @@ const Details = () => {
         .then(resp => {
             console.log(resp)
             if (resp.success === true) {
-                window.location.assign("http://localhost:3001/signin" || "https://challenge-tolugold1.vercel.app/signin")
+                window.location.assign("https://challenge-tolugold1.vercel.app/signin")
              } else {
-                window.location.assign("http://localhost:3001/details" || "https://challenge-tolugold1.vercel.app/details")
+                window.location.assign("https://challenge-tolugold1.vercel.app/details")
              }
         })
         .catch(err => console.log(err))
