@@ -70,10 +70,8 @@ const DashboardPage = () => {
         }
         setDailyCommit(number)
         getUserGithubDetails();
-        if (localStorage.getItem("repository") != null) {
-            getDailyCommitStat();
-        }
         repository();
+        getDailyCommitStat();
     }, [])
 
     console.log("reposNames", reposNames)
@@ -82,7 +80,7 @@ const DashboardPage = () => {
 
     const getDailyCommitStat = () => {
         const githubname = localStorage.getItem("userGitHubAcct")
-        const repoName = localStorage.getItem("repository")
+        const repoName = "cms_blog" /// the repo name to use, still gonna work on this
         const bearer = "Bearer " + localStorage.getItem("token")
         fetch(`https://localhost:3443/github/${githubname}/${repoName}`, {
             headers: {
@@ -92,7 +90,6 @@ const DashboardPage = () => {
         })
         .then(resp => resp.json())
         .then(resp => {
-            console.log(resp, "weekly")
             setWeeklyCommit(resp)
         })
     };
