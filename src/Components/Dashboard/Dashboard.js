@@ -1,11 +1,9 @@
 import React, {useState, useEffect } from "react";
-import Nav from "../Navbar/Navbar";
 import { Row, Col, Card, CardBody, Container } from "reactstrap";
 import { PieData } from "./pie";
-import SideNav from "../Sidebar/SideNav";
 import { AiFillQuestionCircle } from "react-icons/ai";
 import DChart from "./pieChart";
-import  { BarData, BarData1, BarData2 } from "./Bar";
+import  { BarData } from "./Bar";
 import BarChart from "./BarChart";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { RiMessage2Fill } from "react-icons/ri";

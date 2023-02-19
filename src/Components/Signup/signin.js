@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Col, Row, Card, CardBody, Form, FormGroup, InputGroup, Input, FormText } from "reactstrap";
 import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
     const [statedType, setstatedType] = useState(false);
@@ -128,7 +128,7 @@ const SignIn = () => {
                                         <AiFillEye className="eye" onClick={() => setstatedType(prev => !prev)}/>
                                     </InputGroup>
                                 </FormGroup>
-                                <div><FormText><a href="#" className="f_password">Forgot password?</a></FormText></div>
+                                <div><FormText><a href="" className="f_password">Forgot password?</a></FormText></div>
                                 <Button type="submit" value="submit" className="form_submit_btn">Submit</Button>
                             </Form>
                             <div className={check ? "errMess" : "hideit"}>{respo}</div>

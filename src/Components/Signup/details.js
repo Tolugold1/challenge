@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { Button, Col, Row, Card, CardBody, Form, FormGroup, Input, } from "reactstrap";
 import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
-import {  Navigate } from "react-router-dom";
 
 const Details = () => {
-    const [statedType, setstatedType] = useState(false);
     const [ value, setValue ] = useState({fullname: "", twittername: "", githubname: "", facebookname: ""});
     const [ file, setFile ] = useState({pics: []});
-    const type = statedType ? 'text' : 'password';
 
     const onFileUpload = () => {
         const bearer = "Bearer " + localStorage.getItem('token');
