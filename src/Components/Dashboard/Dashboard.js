@@ -26,7 +26,7 @@ const DashboardPage = () => {
         const getUserGithubDetails = () => {
             const githubname = localStorage.getItem("userGitHubAcct")
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch(`https://localhost:3443/github/${githubname}`, {
+            fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}`, {
                 headers: {
                     "Content-Type": "application",
                     "Authorization": bearer
@@ -43,7 +43,7 @@ const DashboardPage = () => {
             console.log("resp")
             const githubname = localStorage.getItem("userGitHubAcct")
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch(`https://localhost:3443/repo/${githubname}`, {
+            fetch(`https://coral-fish-vest.cyclic.app/repo/${githubname}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -82,7 +82,7 @@ const DashboardPage = () => {
         const githubname = localStorage.getItem("userGitHubAcct")
         const repoName = "cms_blog" /// the repo name to use, still gonna work on this
         const bearer = "Bearer " + localStorage.getItem("token")
-        fetch(`https://localhost:3443/github/${githubname}/${repoName}`, {
+        fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}/${repoName}`, {
             headers: {
                 "Content-Type": "application",
                 "Authorization": bearer

@@ -20,7 +20,7 @@ const SideNav = () => {
 
     const getUserDetails = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch("https://localhost:3443/upload", {
+        fetch("https://coral-fish-vest.cyclic.app/upload", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -39,7 +39,7 @@ const SideNav = () => {
         localStorage.removeItem("myId");
         localStorage.removeItem("repos_url");
         localStorage.removeItem("number_of_notification");
-        fetch("https://localhost:3443/users/logout", {
+        fetch("https://coral-fish-vest.cyclic.app/users/logout", {
             method: "POST",
             headers: {
                 "Content_Type": "application/json"

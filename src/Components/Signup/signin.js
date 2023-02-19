@@ -13,7 +13,7 @@ const SignIn = () => {
     const type = statedType ? 'text' : 'password';
 
 /*     const githubLogin =  async () => {
-        fetch("https://localhost:3443/users/auth/github/login", {
+        fetch("https://coral-fish-vest.cyclic.app/users/auth/github/login", {
             headers: {
                 "Access-Control-Allow-Origin": "*"
             }
@@ -35,7 +35,7 @@ const SignIn = () => {
             username: value.username,
             password: value.password
         }
-        fetch("https://localhost:3443/users/signin", {
+        fetch("https://coral-fish-vest.cyclic.app/users/signin", {
             method: 'POST',
             body: JSON.stringify(v),
             headers: {
@@ -60,7 +60,7 @@ const SignIn = () => {
 
     const validateProfileInfo = (p) => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://localhost:3443/upload/${p}`, {
+        fetch(`https://coral-fish-vest.cyclic.app/upload/${p}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -70,9 +70,9 @@ const SignIn = () => {
         .then((resp) => {
             if (resp.success === true) { // authenticate and search if user has filled in the details form, if user details found, redirect to dashboard else redirect to details form page.
                 setRespo(true);
-                window.location.assign("http://localhost:3001/dashboard")
+                window.location.assign("http://localhost:3001/dashboard" || "https://challenge-tolugold1.vercel.app/dashboard")
             } else {
-                window.location.assign("http://localhost:3001/details")
+                window.location.assign("http://localhost:3001/details" || "https://challenge-tolugold1.vercel.app/details")
             }
         })
     }

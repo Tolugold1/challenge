@@ -37,7 +37,7 @@ const Nav = () => {
     useEffect(() => {
         const personalRequestAcct = () => {
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch("https://localhost:3443/request", {
+            fetch("https://coral-fish-vest.cyclic.app/request", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const Nav = () => {
         personalRequestAcct()
         const personalAcceptAcct = () => {
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch("https://localhost:3443/accept", {
+            fetch("https://coral-fish-vest.cyclic.app/accept", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const Nav = () => {
         let s = []
         const notification = () => {
             const bearer = "Bearer " + localStorage.getItem("token");
-            fetch("https://localhost:3443/request", {
+            fetch("https://coral-fish-vest.cyclic.app/request", {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -79,7 +79,7 @@ const Nav = () => {
             }, (err) => console.log(err)).catch(err => console.log(err));
         };
         const getRequestSenderImg = (id) => {
-            fetch(`https://localhost:3443/upload/${id}`, {
+            fetch(`https://coral-fish-vest.cyclic.app/upload/${id}`, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -99,7 +99,7 @@ const Nav = () => {
 
     const getUserdata = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch("https://localhost:3443/users/user", {
+        fetch("https://coral-fish-vest.cyclic.app/users/user", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -113,7 +113,7 @@ const Nav = () => {
 
     const getUserDetails = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch("https://localhost:3443/upload", {
+        fetch("https://coral-fish-vest.cyclic.app/upload", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -131,7 +131,7 @@ const Nav = () => {
 
     const deleteSenderId = (senderId) => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://localhost:3443/request/${senderId}`, {
+        fetch(`https://coral-fish-vest.cyclic.app/request/${senderId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -143,7 +143,7 @@ const Nav = () => {
 
     const AcceptedARequest = (id) => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://localhost:3443/accept/${id}`, {
+        fetch(`https://coral-fish-vest.cyclic.app/accept/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

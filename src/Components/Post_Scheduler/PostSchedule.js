@@ -15,7 +15,7 @@ function PostSchedule() {
             reponame: challengeValue.reponame
         }
 
-        fetch("https://localhost:3443/upload", {
+        fetch("https://coral-fish-vest.cyclic.app/upload", {
             method: "PUT",
             body: JSON.stringify(obj),
             headers: {

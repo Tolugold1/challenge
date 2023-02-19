@@ -24,7 +24,7 @@ const ChallengePage = () => {
         let stat = [];
         const notification = () => {
             const bearer = "Bearer " + localStorage.getItem("token");
-            fetch("https://localhost:3443/request", {
+            fetch("https://coral-fish-vest.cyclic.app/request", {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -39,7 +39,7 @@ const ChallengePage = () => {
             }, (err) => console.log(err)).catch(err => console.log(err));
         };
         const getRequestISender = (id) => {
-            fetch(`https://localhost:3443/upload/${id}`, {
+            fetch(`https://coral-fish-vest.cyclic.app/upload/${id}`, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -57,7 +57,7 @@ const ChallengePage = () => {
         };
         const AcceptedRequestIsendStatus = (id) => {
             const bearer = "Bearer " + localStorage.getItem("token");
-            fetch(`https://localhost:3443/accept/${id}`, {
+            fetch(`https://coral-fish-vest.cyclic.app/accept/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -80,7 +80,7 @@ const ChallengePage = () => {
 
     const getAPeer = () => {
         const bearer = "Bearer " + localStorage.getItem("token")
-        fetch(`https://localhost:3443/users/${fn.n}`, {
+        fetch(`https://coral-fish-vest.cyclic.app/users/${fn.n}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -101,7 +101,7 @@ const ChallengePage = () => {
     }
 
     const userDetails = (p) => {
-        fetch(`https://localhost:3443/upload/${p}`, {
+        fetch(`https://coral-fish-vest.cyclic.app/upload/${p}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -117,7 +117,7 @@ const ChallengePage = () => {
 
     const sendRequest = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://localhost:3443/request/${peerId}`, {
+        fetch(`https://coral-fish-vest.cyclic.app/request/${peerId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

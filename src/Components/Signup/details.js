@@ -20,7 +20,7 @@ const Details = () => {
         formData.append("githubname", value.githubname);
         formData.append("facebookname", value.facebookname); 
 
-        fetch("https://localhost:3443/upload", {
+        fetch("https://coral-fish-vest.cyclic.app/upload", {
             method: "POST",
             body: formData,
             headers: {
@@ -31,9 +31,9 @@ const Details = () => {
         .then(resp => {
             console.log(resp)
             if (resp.success === true) {
-                window.location.assign("http://localhost:3001/signin")
+                window.location.assign("http://localhost:3001/signin" || "https://challenge-tolugold1.vercel.app/signin")
              } else {
-                window.location.assign("http://localhost:3001/details")
+                window.location.assign("http://localhost:3001/details" || "https://challenge-tolugold1.vercel.app/details")
              }
         })
         .catch(err => console.log(err))
