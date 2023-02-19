@@ -21,6 +21,7 @@ const Details = () => {
             method: "POST",
             body: formData,
             headers: {
+                "Content-Type": "multipart/form-data",
                 "Authorization": bearer
             }
         })
@@ -35,10 +36,12 @@ const Details = () => {
         })
         .catch(err => console.log(err))
     }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         onFileUpload()
     }
+
     const handleChange = (event) => {
         const target = event.target;
         const value = target.value;
