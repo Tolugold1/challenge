@@ -21,7 +21,6 @@ const Details = () => {
             method: "POST",
             body: formData,
             headers: {
-                "Content-Type": "multipart/form-data",
                 "Authorization": bearer
             }
         })
@@ -77,7 +76,7 @@ const Details = () => {
                     <Card className="sign_form">
                         <CardBody className="sign_card_body">
                             <h2 style={{fontSize: "1em"}}>Please fill the form below</h2>
-                            <Form onSubmit={handleSubmit}>
+                            <Form enctype="multipart/form-data" onSubmit={handleSubmit}>
                                 <FormGroup className="card_form_group">
                                     <Input type="text" placeholder="Twitter username" className="input-input" name="twittername" onChange={handleChange}   />
                                 </FormGroup>
