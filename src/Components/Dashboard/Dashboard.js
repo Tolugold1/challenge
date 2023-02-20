@@ -78,7 +78,7 @@ const DashboardPage = () => {
 
     const getDailyCommitStat = () => {
         const githubname = localStorage.getItem("userGitHubAcct")
-        const repoName = "challenge" /// the repo name to use, still gonna work on this
+        const repoName = " cms_blog" /// the repo name to use, still gonna work on this
         const bearer = "Bearer " + localStorage.getItem("token")
         fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}/${repoName}`, {
             headers: {
