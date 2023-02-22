@@ -10,6 +10,7 @@ const SignIn = () => {
     const [ value, setValue ] = useState({username:"", password:""});
     const [ respo, setRespo ] = useState("")
     const [ check, setCheck ] = useState(false)
+    
     const type = statedType ? 'text' : 'password';
 
 /*     const githubLogin =  async () => {
