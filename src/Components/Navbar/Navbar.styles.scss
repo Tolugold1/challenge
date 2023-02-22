@@ -65,13 +65,17 @@
 
         .img_media {
             margin: 3px;
-        }
-
-        .passport {
             width: 40px;
             height: 40px;
-            object-fit: cover;
-            border-radius: 5px;
+            background: url("../../assets/emptyImg.png")no-repeat center center / cover;
+            
+
+            .passport {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
         }
     }
     @media (min-width: 998px) and (max-width: 1200px) {

@@ -19,7 +19,7 @@ const SignUp = () => {
             email: value.email,
             password: value.password
         }
-        fetch("https://coral-fish-vest.cyclic.app/users/signup", {
+        fetch("https://localhost:3443/users/signup", {
             method: 'POST',
             body: JSON.stringify(v),
             headers: {
