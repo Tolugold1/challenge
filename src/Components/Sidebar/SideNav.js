@@ -35,7 +35,7 @@ const SideNav = () => {
     const toggleCollapse = () => setCollapse(!collapse);
     const logOut = () => {
         alert("Are you sure?");
-        localStorage.clear();
+        localStorage.removeItem("token");
         fetch("https://coral-fish-vest.cyclic.app/users/logout", {
             method: "POST",
             headers: {

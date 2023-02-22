@@ -129,7 +129,7 @@ const SignIn = () => {
                                         <AiFillEye className="eye" onClick={() => setstatedType(prev => !prev)}/>
                                     </InputGroup>
                                 </FormGroup>
-                                <div><FormText><a href="" className="f_password">Forgot password?</a></FormText></div>
+                                <div><FormText><a href="#" className="f_password">Forgot password?</a></FormText></div>
                                 <Button type="submit" value="submit" className="form_submit_btn">Submit</Button>
                             </Form>
                             <div className={check ? "errMess" : "hideit"}>{respo}</div>
