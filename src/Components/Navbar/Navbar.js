@@ -124,9 +124,6 @@ const Nav = () => {
         .then((r) => {
             console.log("r", r.status[0])
             setProfilePicture(r.status)
-            localStorage.setItem("userGitHubAcct", r.status[0].githubname);
-            localStorage.setItem("repository", r.status[0].github_repo_name
-            )
         })
     }
 
