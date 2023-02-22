@@ -36,6 +36,7 @@ const SideNav = () => {
     const logOut = () => {
         alert("Are you sure?");
         localStorage.removeItem("token");
+        localStorage.removeItem("myId");
         fetch("https://coral-fish-vest.cyclic.app/users/logout", {
             method: "POST",
             headers: {

@@ -70,7 +70,6 @@ const SignIn = () => {
         .then((resp) => {
             if (resp.success === true) { // authenticate and search if user has filled in the details form, if user details found, redirect to dashboard else redirect to details form page.
                 setRespo(true);
-                localStorage.setItem("userGitHubAcct", resp.status[0].githubname)
                 window.location.assign("https://challenge-umber-six.vercel.app/dashboard")
             } else {
                 window.location.assign("https://challenge-umber-six.vercel.app/details")
