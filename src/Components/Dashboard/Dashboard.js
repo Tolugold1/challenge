@@ -80,16 +80,18 @@ const DashboardPage = () => {
         const githubname = localStorage.getItem("userGitHubAcct")
         const repoName = localStorage.getItem("repository") /// the repo name to use, still gonna work on this
         const bearer = "Bearer " + localStorage.getItem("token")
-        fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}/${repoName}`, {
-            headers: {
-                "Content-Type": "application",
-                "Authorization": bearer
-            }
-        })
-        .then(resp => resp.json())
-        .then(resp => {
-            setWeeklyCommit(resp)
-        })
+        if (repoName !== null) {
+            fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}/${repoName}`, {
+                headers: {
+                    "Content-Type": "application",
+                    "Authorization": bearer
+                }
+            })
+            .then(resp => resp.json())
+            .then(resp => {
+                setWeeklyCommit(resp)
+            })
+        }
     };
 
     const [ pieData, setPieData ] = useState({
