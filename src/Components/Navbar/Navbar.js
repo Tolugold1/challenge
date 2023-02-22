@@ -78,6 +78,8 @@ const Nav = () => {
                 }
             }, (err) => console.log(err)).catch(err => console.log(err));
         };
+        
+        notification();
 
         const getRequestSenderImg = (id) => {
             fetch(`https://coral-fish-vest.cyclic.app/upload/${id}`, {
@@ -91,8 +93,7 @@ const Nav = () => {
             })
         }
         localStorage.setItem("number_of_notification", notify.count)
-        setEachSenderId(s)
-        notification();
+        setEachSenderId(s);
         getUserdata();
         getUserDetails();
     }, [notify.count])

@@ -81,7 +81,7 @@ const Details = () => {
                                     <Input type="text" placeholder="Twitter username" className="input-input" name="twittername" onChange={handleChange}   />
                                 </FormGroup>
                                 <FormGroup className="card_form_group">
-                                    <Input type="text" placeholder="github username" className="input-input" name="githubname" onChange={handleChange}   />
+                                    <Input type="text" placeholder="github username" className="input-input" name="githubname" onChange={handleChange} required />
                                 </FormGroup>
                                 <FormGroup className="card_form_group">
                                     <Input type="text" placeholder="facebook username" className="input-input" name="facebookname" onChange={handleChange}   />
