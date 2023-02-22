@@ -69,29 +69,29 @@ const DashboardPage = () => {
         setDailyCommit(number)
         getUserGithubDetails();
         repository();
-        getDailyCommitStat();
+        const repoName = localStorage.getItem("repository")
+        if (repoName.length !== 0) {
+            getDailyCommitStat(repoName);
+        }
     }, [])
 
     console.log("reposNames", reposNames)
 
     console.log("dailyCommit", dailyCommit)
 
-    const getDailyCommitStat = () => {
-        const githubname = localStorage.getItem("userGitHubAcct")
-        const repoName = localStorage.getItem("repository") /// the repo name to use, still gonna work on this
+    const getDailyCommitStat = (repoName) => {
+        const githubname = localStorage.getItem("userGitHubAcct") /// the repo name to use, still gonna work on this
         const bearer = "Bearer " + localStorage.getItem("token")
-        if (repoName !== null) {
-            fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}/${repoName}`, {
-                headers: {
-                    "Content-Type": "application",
-                    "Authorization": bearer
-                }
-            })
-            .then(resp => resp.json())
-            .then(resp => {
-                setWeeklyCommit(resp)
-            })
-        }
+        fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}/${repoName}`, {
+            headers: {
+                "Content-Type": "application",
+                "Authorization": bearer
+            }
+        })
+        .then(resp => resp.json())
+        .then(resp => {
+            setWeeklyCommit(resp)
+        })
     };
 
     const [ pieData, setPieData ] = useState({
