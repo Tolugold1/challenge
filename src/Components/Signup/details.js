@@ -35,35 +35,9 @@ const Details = () => {
         })
         .catch(err => console.log(err))
     }
-    
-    const uploadImage = () => {
-        const bearer = "Bearer " + localStorage.getItem('token');
-        const formData = new FormData();
-
-        formData.append('pics', file.pics) 
-
-        fetch("https://coral-fish-vest.cyclic.app/pics", {
-            method: "POST",
-            body: formData,
-            headers: {
-                "Authorization": bearer
-            }
-        })
-        .then(resp => resp.json())
-        .then(resp => {
-            console.log(resp)
-            if (resp.success === true) {
-                window.location.assign("https://challenge-tolugold1.vercel.app/signin")
-             } else {
-                window.location.assign("https://challenge-tolugold1.vercel.app/details")
-             }
-        })
-        .catch(err => console.log(err))
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        uploadImage();
         onFileUpload()
     }
 
