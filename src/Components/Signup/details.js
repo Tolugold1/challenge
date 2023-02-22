@@ -17,7 +17,7 @@ const Details = () => {
         formData.append("githubname", value.githubname);
         formData.append("facebookname", value.facebookname); 
 
-        fetch("https://localhost:3443/upload", {
+        fetch("https://coral-fish-vest.cyclic.app/upload", {
             method: "POST",
             body: formData,
             headers: {
@@ -28,42 +28,16 @@ const Details = () => {
         .then(resp => {
             console.log(resp)
             if (resp.success === true) {
-                window.location.assign("http://localhost:3001/signin")
+                window.location.assign("https://challenge-umber-six.vercel.app/signin")
              } else {
-                window.location.assign("http://localhost:3001/details")
+                window.location.assign("https://challenge-umber-six.vercel.app/details")
              }
         })
         .catch(err => console.log(err))
     }
-
-    const uploadImage = () => {
-        const bearer = "Bearer " + localStorage.getItem('token');
-        const formData = new FormData();
-
-        formData.append('pics', file.pics) 
-
-        fetch("https://localhost:3443/pics", {
-            method: "POST",
-            body: formData,
-            headers: {
-                "Authorization": bearer
-            }
-        })
-        .then(resp => resp.json())
-        .then(resp => {
-            console.log(resp)
-            if (resp.success === true) {
-                window.location.assign("http://localhost:3001/signin")
-             } else {
-                window.location.assign("http://localhost:3001/details")
-             }
-        })
-        .catch(err => console.log(err))
-    }
-
+    
     const handleSubmit = (event) => {
         event.preventDefault();
-        uploadImage();
         onFileUpload();
     }
 
