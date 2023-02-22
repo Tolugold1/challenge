@@ -78,6 +78,7 @@ const Nav = () => {
                 }
             }, (err) => console.log(err)).catch(err => console.log(err));
         };
+
         const getRequestSenderImg = (id) => {
             fetch(`https://coral-fish-vest.cyclic.app/upload/${id}`, {
                 headers: {
@@ -123,7 +124,6 @@ const Nav = () => {
         .then((r) => {
             console.log("r", r.status[0])
             setProfilePicture(r.status)
-            localStorage.setItem("userGitHubAcct", r.status[0].githubname)
             localStorage.setItem("repository", r.status[0].github_repo_name
             )
         })
