@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SideNav from '../Sidebar/SideNav';
 import Nav from "../Navbar/Navbar"
 import "./layout.styles.scss"

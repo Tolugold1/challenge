@@ -35,6 +35,8 @@ const Nav = () => {
     const year = new Date().getFullYear()
 
     useEffect(() => {
+        
+
         const personalRequestAcct = () => {
             const bearer = "Bearer " + localStorage.getItem("token")
             fetch("https://coral-fish-vest.cyclic.app/request", {

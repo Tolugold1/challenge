@@ -1,33 +1,20 @@
-import React from 'react';
-import SignUp from './Components/Signup/signUp';
-import SignIn from './Components/Signup/signin';
-import DashboardPage from "./Components/Dashboard/Dashboard";
-import ChallengePage from './Components/Challenges/ChallengePage';
-import PostSchedule from './Components/Post_Scheduler/PostSchedule';
-import Details from './Components/Signup/details';
+import React from "react";
+import { configureStore } from "./redux/configureStore";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import "./App.styles.scss";
-import layout from './Components/layout/layout';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Main from "./Components/Main"
 
-function App() {
-  const DashboardApp = layout(DashboardPage);
-  const ChallengeApp = layout(ChallengePage);
-  const PostScheduleApp = layout(PostSchedule);
+const store = configureStore();
+
+const App = () => {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path='/' element={<SignIn />} />
-          <Route exact path='/dashboard' element={<DashboardApp />} />
-          <Route exact path='/signin' element={<SignIn />} />
-          <Route exact path='/signup' element={<SignUp />} />
-          <Route exact path='/details' element={<Details />} />
-          <Route exact path='/challenge' element={<ChallengeApp />} />
-          <Route exact path='/postschedule' element={<PostScheduleApp />} />
-        </Routes>
-      </Router>
-    </div>
-  );
+    <Provider store={store}>
+      <BrowserRouter>
+          <Main />
+      </BrowserRouter>
+    </Provider>
+  )
 }
 
 export default App;
