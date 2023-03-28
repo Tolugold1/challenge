@@ -2,14 +2,15 @@
     display: flex;
 
     .sidebar {
-        position: fixed;
         z-index: 100;
     }
 
+    .icon_side_nav {
+        display: none;       
+    }
+
     .challenge_nav {
-        margin-left: 300px;
         background-color: #F1F8FF;
-        flex: 7;
     }
 }
 
@@ -18,14 +19,14 @@
         display: flex;
     
         .sidebar {
-            position: fixed;
-            z-index: 100;
+            display: none;
+        }
+        .icon_side_nav {
+            display: block;
         }
     
         .challenge_nav {
-            margin-left: 255px;
             background-color: #F1F8FF;
-            flex: 7;
         }
     }
 }
@@ -35,14 +36,13 @@
         display: flex;
     
         .sidebar {
-            position: fixed;
-            z-index: 100;
+            display: none;
         }
-    
+        .icon_side_nav {
+            display: block;
+        }
         .challenge_nav {
-            margin-left: 205px;
             background-color: #F1F8FF;
-            flex: 7;
         }
     }
 }
@@ -51,13 +51,16 @@
         display: flex;
     
         .sidebar {
-            position: fixed;
-            z-index: 100;
+            display: none;
+        }
+
+        .icon_side_nav {
+            display: block;
         }
     
         .challenge_nav {
-            margin-left: 155px;
             background-color: #F1F8FF;
+            
             .headerNav {
                 position: relative;
                 margin-top: 0px;

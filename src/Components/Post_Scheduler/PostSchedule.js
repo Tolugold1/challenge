@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardBody, Button, Container, Form, FormGroup, Input } from "reactstrap";
+import { baseUrl } from '../baseUrl';
 import './postschedule.styles.scss'
 
 
@@ -15,7 +16,7 @@ function PostSchedule() {
             reponame: challengeValue.reponame
         }
 
-        fetch("https://coral-fish-vest.cyclic.app/upload", {
+        fetch(baseUrl.url + "/upload", {
             method: "PUT",
             body: JSON.stringify(obj),
             headers: {

@@ -4,13 +4,14 @@ import { Navbar, NavbarBrand, Form, FormGroup, InputGroup,
 import { BiSearch } from "react-icons/bi";
 import { Buffer } from "buffer";
 import { IoMdNotifications } from "react-icons/io"
-import { useLocation  } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import "./Navbar.styles.scss";
+import { baseUrl } from '../baseUrl'
 
 const Nav = () => {
 
     const location = useLocation();
-    let path = [ "/dashboard", "/challenge", "/postschedule" ];
+    let path = [ "/home/dashboard", "/home/challenge", "/home/postschedule" ];
     let exactPath;
     if (location.pathname === path[0]) {
         exactPath = "Dashboard";
@@ -37,7 +38,7 @@ const Nav = () => {
     useEffect(() => {
         const personalRequestAcct = () => {
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch("https://coral-fish-vest.cyclic.app/request", {
+            fetch(baseUrl.url + "/request", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -50,7 +51,7 @@ const Nav = () => {
         personalRequestAcct()
         const personalAcceptAcct = () => {
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch("https://coral-fish-vest.cyclic.app/accept", {
+            fetch(baseUrl.url + "/accept", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -64,7 +65,7 @@ const Nav = () => {
         let s = []
         const notification = () => {
             const bearer = "Bearer " + localStorage.getItem("token");
-            fetch("https://coral-fish-vest.cyclic.app/request", {
+            fetch(baseUrl.url + "/request", {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -82,7 +83,7 @@ const Nav = () => {
         notification();
 
         const getRequestSenderImg = (id) => {
-            fetch(`https://coral-fish-vest.cyclic.app/upload/${id}`, {
+            fetch(baseUrl.url + `/upload/${id}`, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -101,7 +102,7 @@ const Nav = () => {
 
     const getUserdata = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch("https://coral-fish-vest.cyclic.app/users/user", {
+        fetch(baseUrl.url + "/users/user", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -115,7 +116,7 @@ const Nav = () => {
 
     const getUserDetails = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch("https://coral-fish-vest.cyclic.app/upload", {
+        fetch(baseUrl.url + "/upload", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -132,7 +133,7 @@ const Nav = () => {
 
     const deleteSenderId = (senderId) => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://coral-fish-vest.cyclic.app/request/${senderId}`, {
+        fetch(baseUrl.url + `/request/${senderId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -144,7 +145,7 @@ const Nav = () => {
 
     const AcceptedARequest = (id) => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://coral-fish-vest.cyclic.app/accept/${id}`, {
+        fetch(baseUrl.url + `/accept/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -213,6 +214,7 @@ const Nav = () => {
                     )
                 })}
             </Navbar>
+            <Outlet />
         </div>
     )
 }

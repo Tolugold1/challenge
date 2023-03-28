@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Row, Card, CardBody, Form, FormGroup, InputGroup, Input, FormText } from "reactstrap";
 import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
-
+import { baseUrl } from "../baseUrl";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { Link, Navigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const SignUp = () => {
             email: value.email,
             password: value.password
         }
-        fetch("https://coral-fish-vest.cyclic.app/users/signup", {
+        fetch(baseUrl.url + "/users/signup", {
             method: 'POST',
             body: JSON.stringify(v),
             headers: {

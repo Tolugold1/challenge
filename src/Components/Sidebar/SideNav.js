@@ -8,6 +8,7 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { MdSpaceDashboard, MdPeople, MdSettings, MdHeadphones } from "react-icons/md";
 import { TbCalendarStats } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../baseUrl";
 
 
 const SideNav = () => {
@@ -20,7 +21,7 @@ const SideNav = () => {
 
     const getUserDetails = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch("https://coral-fish-vest.cyclic.app/upload", {
+        fetch(baseUrl.url + "/upload", {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -37,7 +38,7 @@ const SideNav = () => {
         alert("Are you sure?");
         localStorage.removeItem("token");
         localStorage.removeItem("myId");
-        fetch("https://coral-fish-vest.cyclic.app/users/logout", {
+        fetch(baseUrl.url + "/users/logout", {
             method: "POST",
             headers: {
                 "Content_Type": "application/json"
@@ -85,13 +86,13 @@ const SideNav = () => {
             <h6 className="main_text">MAIN NAVIGATION</h6>
 
             <ul className="navigation_links">
-                <Link to="/dashboard" className="dash">
+                <Link to="/home/dashboard" className="dash">
                     <li className="lists"><MdSpaceDashboard className="navs"/> Dashboard</li>
                 </Link>
-                <Link to="/challenge" className="dash">
+                <Link to="/home/challenge" className="dash">
                     <li className="lists"><MdPeople className="navs" /> Challenge</li>
                 </Link>
-                <Link to="/postschedule" className="dash">
+                <Link to="/home/postschedule" className="dash">
                     <li className="lists"><TbCalendarStats className="navs"/> Post schedule</li>
                 </Link>
             </ul>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Row, Card, CardBody, Form, FormGroup, Input, } from "reactstrap";
 import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
+import { baseUrl } from "../baseUrl";
 
 const Details = () => {
     const [ value, setValue ] = useState({fullname: "", twittername: "", githubname: "", facebookname: ""});
@@ -17,7 +18,7 @@ const Details = () => {
         formData.append("githubname", value.githubname);
         formData.append("facebookname", value.facebookname); 
 
-        fetch("https://coral-fish-vest.cyclic.app/upload", {
+        fetch(baseUrl.url + "/upload", {
             method: "POST",
             body: formData,
             headers: {
@@ -28,9 +29,9 @@ const Details = () => {
         .then(resp => {
             console.log(resp)
             if (resp.success === true) {
-                window.location.assign("https://challenge-umber-six.vercel.app/signin")
+                window.location.assign("http://localhost:3001/signin")
              } else {
-                window.location.assign("https://challenge-umber-six.vercel.app/details")
+                window.location.assign("http://localhost:3001/details")
              }
         })
         .catch(err => console.log(err))

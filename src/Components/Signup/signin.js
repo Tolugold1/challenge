@@ -4,6 +4,7 @@ import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { baseUrl } from "../baseUrl";
 
 const SignIn = () => {
     const [statedType, setstatedType] = useState(false);
@@ -35,7 +36,7 @@ const SignIn = () => {
             username: value.username,
             password: value.password
         }
-        fetch("https://coral-fish-vest.cyclic.app/users/signin", {
+        fetch(baseUrl.url + "/users/signin", {
             method: 'POST',
             body: JSON.stringify(v),
             headers: {
@@ -60,7 +61,7 @@ const SignIn = () => {
 
     const validateProfileInfo = (p) => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://coral-fish-vest.cyclic.app/upload/${p}`, {
+        fetch(baseUrl.url + `/upload/${p}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -71,9 +72,9 @@ const SignIn = () => {
             if (resp.success === true) { // authenticate and search if user has filled in the details form, if user details found, redirect to dashboard else redirect to details form page.
                 setRespo(true);
                 localStorage.setItem("userGitHubAcct", resp.status[0].githubname)
-                window.location.assign("https://challenge-umber-six.vercel.app/dashboard")
+                window.location.assign("http://localhost:3001/home/dashboard")
             } else {
-                window.location.assign("https://challenge-umber-six.vercel.app/details")
+                window.location.assign("http://localhost:3001/details")
             }
         })
     }

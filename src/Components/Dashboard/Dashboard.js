@@ -10,6 +10,7 @@ import { RiMessage2Fill } from "react-icons/ri";
 import { TfiSharethisAlt } from "react-icons/tfi"
 import { BiTrendingUp, BiTrendingDown } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md"
+import { baseUrl } from "../baseUrl";
 import "./Dashboard.styles.scss";
 
 
@@ -24,7 +25,7 @@ const DashboardPage = () => {
         const getUserGithubDetails = () => {
             const githubname = localStorage.getItem("userGitHubAcct")
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}`, {
+            fetch(baseUrl.url + `/github/${githubname}`, {
                 headers: {
                     "Content-Type": "application",
                     "Authorization": bearer
@@ -41,7 +42,7 @@ const DashboardPage = () => {
             console.log("resp")
             const githubname = localStorage.getItem("userGitHubAcct")
             const bearer = "Bearer " + localStorage.getItem("token")
-            fetch(`https://coral-fish-vest.cyclic.app/repo/${githubname}`, {
+            fetch(baseUrl.url + `/repo/${githubname}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -82,7 +83,7 @@ const DashboardPage = () => {
     const getDailyCommitStat = (repoName) => {
         const githubname = localStorage.getItem("userGitHubAcct") /// the repo name to use, still gonna work on this
         const bearer = "Bearer " + localStorage.getItem("token")
-        fetch(`https://coral-fish-vest.cyclic.app/github/${githubname}/${repoName}`, {
+        fetch(baseUrl.url + `/github/${githubname}/${repoName}`, {
             headers: {
                 "Content-Type": "application",
                 "Authorization": bearer
@@ -94,7 +95,7 @@ const DashboardPage = () => {
         })
     };
 
-    const [ pieData, setPieData ] = useState({
+    const pieData = {
         labels: PieData.map((data) => data.label),
         datasets: [{
             label: "statistics",
@@ -106,7 +107,7 @@ const DashboardPage = () => {
             radius: '70%',
             cutout: '75%'
         }]
-    });
+    };
 
     const barData = {
         labels: reposNames.map((data) => data.name),

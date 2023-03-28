@@ -5,6 +5,7 @@ import { RiArrowRightSFill, RiArrowDownSFill } from "react-icons/ri"
 import { BiSearch } from "react-icons/bi"
 import { Container, Row, Col, Card, CardTitle, CardBody, Button, CardImg, Form, FormGroup, InputGroup, Input, Media } from "reactstrap";
 import "./challenge.styles.scss"
+import { baseUrl } from "../baseUrl";
 
 const ChallengePage = () => {
     const [ fn, setFullname ] = useState({n: ""});
@@ -24,7 +25,7 @@ const ChallengePage = () => {
         let stat = [];
         const notification = () => {
             const bearer = "Bearer " + localStorage.getItem("token");
-            fetch("https://coral-fish-vest.cyclic.app/request", {
+            fetch(baseUrl.url + "/request", {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -39,7 +40,7 @@ const ChallengePage = () => {
             }, (err) => console.log(err)).catch(err => console.log(err));
         };
         const getRequestISender = (id) => {
-            fetch(`https://coral-fish-vest.cyclic.app/upload/${id}`, {
+            fetch(baseUrl.url + `/upload/${id}`, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -57,7 +58,7 @@ const ChallengePage = () => {
         };
         const AcceptedRequestIsendStatus = (id) => {
             const bearer = "Bearer " + localStorage.getItem("token");
-            fetch(`https://coral-fish-vest.cyclic.app/accept/${id}`, {
+            fetch(baseUrl.url + `/accept/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearer
@@ -80,7 +81,7 @@ const ChallengePage = () => {
 
     const getAPeer = () => {
         const bearer = "Bearer " + localStorage.getItem("token")
-        fetch(`https://coral-fish-vest.cyclic.app/users/${fn.n}`, {
+        fetch(baseUrl.url + `/users/${fn.n}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": bearer
@@ -101,7 +102,7 @@ const ChallengePage = () => {
     }
 
     const userDetails = (p) => {
-        fetch(`https://coral-fish-vest.cyclic.app/upload/${p}`, {
+        fetch(baseUrl.url + `/upload/${p}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -117,7 +118,7 @@ const ChallengePage = () => {
 
     const sendRequest = () => {
         const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://coral-fish-vest.cyclic.app/request/${peerId}`, {
+        fetch(baseUrl.url + `/request/${peerId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
