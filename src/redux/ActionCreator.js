@@ -20,13 +20,13 @@ export const LOGIN_RECEIVED = (loginResp) => ({
   payload: loginResp
 })
 
-export const Login_user = (username, password) => async ({dispatch}) => {
+export const Login_user = (username, password) => async (dispatch) => {
+  dispatch(LOGIN_REQUEST(true))
   const CRED = {
     username: username,
     password: password
   };
-  dispatch(LOGIN_REQUEST());
-  return await fetch(URL + "users/signin", {
+  return await fetch(URL.url + "users/signin", {
       method: 'POST',
       body: JSON.stringify(CRED),
       headers: {
@@ -51,7 +51,7 @@ export const Login_user = (username, password) => async ({dispatch}) => {
     if (resp.success === true) {
       localStorage.setItem("token", resp.token);
       localStorage.setItem("userId", resp.userId);
-      Get_user_details(resp.userId);
+      dispatch(Get_user_details(resp.userId));
     }
   }).catch(errMess => {dispatch(LOGIN_FAILED(errMess))});
 };
@@ -66,12 +66,22 @@ export const LOGOUT_REQUEST = () => ({
   type: prototype.LOGOUT_REQUEST
 })
 
-const LogOut = () => (dispatch) => {
+export const LogOut = () => async (dispatch) => {
   dispatch(LOGOUT_REQUEST())
   localStorage.removeItem("token");
   localStorage.removeItem("userId");
   localStorage.removeItem("userGitHubAcct");
-  dispatch(LOGOUT_RECEIVED());
+  return await fetch("http://localhost:3000/users/logout", {
+      method: "POST",
+      headers: {
+          "Content_Type": "application/json"
+      }
+  })
+  .then(resp => resp.json())
+  .then(resp => {
+    dispatch(LOGOUT_RECEIVED());
+    window.location.assign(resp.status)
+  })
 }
 
 
@@ -93,9 +103,8 @@ export const VALID_INFO = (user_details) => ({
 
 
 export const Get_user_details= (userId) => async (dispatch) => {
-  dispatch(INFO_LOADING(true))
   const bearer = "Bearer " + localStorage.getItem("token");
-  return await fetch(URL + `upload/${userId}`, {
+  return await fetch(URL.url + `upload/${userId}`, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": bearer

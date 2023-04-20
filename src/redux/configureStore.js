@@ -1,15 +1,15 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
-import { createForm } from 'react-redux';
+import { createForms } from 'react-redux-form';
 import { loginForm } from "./loginForm";
-import { login } from "./loginReducer";
+import { Login } from "./AuthReducer";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
-export const configureStore = () => {
+export const ConfigureStore = () => {
 
   const store = createStore(combineReducers({
-    login: login,
-    ...createForm({
+    login: Login,
+    ...createForms({
       userLogin: loginForm
     })
   }), applyMiddleware(thunk, logger)

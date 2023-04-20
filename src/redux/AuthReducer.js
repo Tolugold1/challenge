@@ -1,6 +1,6 @@
 import * as ActionCreator from "./ActionCreator";
 
-export const login = (
+export const Login = (
   state={ 
     isLoading: false, 
     errMess: null, 

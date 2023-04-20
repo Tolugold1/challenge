@@ -78,20 +78,20 @@
                     .card_form_group {
                         margin-top: 15px;
                         margin-bottom: 5px;
-                        .form-control{
+                        .input-input {
                             border: 1px solid #775DA6;
+                            width: 100%;
+                            border-radius: 6px;
                             // padding: 12px;
                         }
-                        .form-control:focus {
-                            width: 98%;
+                        .input-input:focus {
+                            width: 100%;
                             background-color: white;
                             border: 0px;
                             // padding: 12px;
+                            border-radius: 6px;
                             box-shadow: none;
                             outline: 2px solid #775DA6;
-                        }
-                        .form-control:focus{
-                            border: none;
                         }
                     }
 
@@ -103,28 +103,33 @@
                             display: flex;
                             align-items: center;
                             vertical-align: middle;
-                            // width: 100%;
                             border: 1px solid #775DA6;
                             border-radius: 6px;
-                            
-                            .input-input:focus {
-                                box-shadow: none;
-                                border-color: white;
-                            }
-                            .form-control {
-                                width: 80%;
+                            padding: 0px;
+                            margin: 0px;
+
+                            .input-input {
+                                width: 89%;
                                 border: 0px;
-                                // padding: 12px;
-                                border-right: 0px;
+                                margin: 0px;
                             }
 
+                            .input-input:focus {
+                                
+                                background-color: white;
+                                border: 0px;
+                                border-radius: 6px;
+                                box-shadow: none;
+                                border-right: 0px;
+                            }
                             .eye {
-                                margin: 10px;
-                                color: grey
+                                margin-left: 5px;
+                                color: grey;
+                                padding: 0px;
                             }
                         }
                         .i_group:hover{
-                            outline: 1.5px solid #775DA6;;
+                            outline: 1.5px solid #775DA6;
                         }
                     }
                     .f_password {

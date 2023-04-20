@@ -1,5 +1,5 @@
 const URL = {
-  url: "https://localhost:3443/"
+  url: "http://localhost:3000/"
 }
 
 export default URL;
