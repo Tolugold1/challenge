@@ -1,5 +1,5 @@
 const URL = {
-  url: "http://localhost:3000/"
+  url: "https://coral-fish-vest.cyclic.app/"
 }
 
 export default URL;

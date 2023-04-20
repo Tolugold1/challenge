@@ -71,7 +71,7 @@ export const LogOut = () => async (dispatch) => {
   localStorage.removeItem("token");
   localStorage.removeItem("userId");
   localStorage.removeItem("userGitHubAcct");
-  return await fetch("http://localhost:3000/users/logout", {
+  return await fetch("https://coral-fish-vest.cyclic.app/users/logout", {
       method: "POST",
       headers: {
           "Content_Type": "application/json"
@@ -127,7 +127,7 @@ export const Get_user_details= (userId) => async (dispatch) => {
     dispatch(LOGIN_RECEIVED(resp.status));
     if (resp.success === true) {
       localStorage.setItem("userGitHubAcct", resp.status[0].githubname)
-      window.location.assign("http://localhost:3001/dashboard")
+      window.location.assign("https://coral-fish-vest.cyclic.app/dashboard")
     } else {
       window.location.assign("https://challenge-umber-six.vercel.app/details")
     }
