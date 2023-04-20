@@ -8,11 +8,16 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { MdSpaceDashboard, MdPeople, MdSettings, MdHeadphones } from "react-icons/md";
 import { TbCalendarStats } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LogOut } from "../../redux/ActionCreator";
+import Modal from "../Modal"
 
 
 const SideNav = () => {
+    const dispatch = useDispatch();
     const [collapse, setCollapse] = useState(false);
     const [post, setPost] = useState([]);
+    const [ logoutLoading, setLogoutLoading ] = useState(false);
 
     useEffect(() => {
         getUserDetails()
@@ -33,21 +38,6 @@ const SideNav = () => {
     }
 
     const toggleCollapse = () => setCollapse(!collapse);
-    const logOut = () => {
-        alert("Are you sure?");
-        localStorage.removeItem("token");
-        localStorage.removeItem("myId");
-        fetch("https://coral-fish-vest.cyclic.app/users/logout", {
-            method: "POST",
-            headers: {
-                "Content_Type": "application/json"
-            }
-        })
-        .then(resp => resp.json())
-        .then(resp => {
-            window.location.assign(resp.status)
-        })
-    }
 
 
 
@@ -104,10 +94,13 @@ const SideNav = () => {
                 <Link to="#" className="dash">
                     <li className="lists"><MdHeadphones style={{width: "27px", height: "27px", color: "#775DA6", marginRight: "10px"}} /> Admin</li>
                 </Link>
-                <Link to="#" className="dash"  onClick={logOut}>
+                <Link to="#" className="dash"  onClick={() => { return (dispatch(LogOut()), setLogoutLoading(true))}}>
                     <li className="lists" ><RiLogoutBoxRFill style={{width: "27px", height: "27px", color: "#775DA6", marginRight: "10px"}}/> Logout</li>
                 </Link>
             </ul>
+            <div className="d-none">
+                <Modal status={ logoutLoading }/>
+            </div>
         </div>
     )
 }

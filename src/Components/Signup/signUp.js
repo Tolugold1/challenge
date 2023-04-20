@@ -4,7 +4,7 @@ import "./sign.styles.scss";
 import { GiSlumberingSanctuary } from "react-icons/gi";
 
 import { AiFillEye, AiFillGithub } from "react-icons/ai";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
     const [statedType, setstatedType] = useState(false);
@@ -29,6 +29,7 @@ const SignUp = () => {
         .then(resp => resp.json())
         .then(resp => {
             setRespo({user: resp.success, error: null});
+            window.location.assign("http://localhost:3001/dashboard")
         })
         .catch(err => {
         setRespo({user: false, error: err})})
@@ -71,7 +72,6 @@ const SignUp = () => {
                 <Col sm="12" md="6" lg="6" className="sign_col2">
                     <Card className="sign_form">
                         <CardBody className="sign_card_body">
-                            {respo.user && (<Navigate to="/signin" />)}
                             <h2>Sign Up</h2>
                             <p>Do you have an account? <Link to="/signIn" className="signup_link"> sign in</Link></p>
                             <Form onSubmit={handleSubmit}>

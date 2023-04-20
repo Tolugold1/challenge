@@ -1,98 +1,26 @@
+/* eslint-disable react/jsx-pascal-case */
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, Col, Row, Card, CardBody, Form, FormGroup, InputGroup, Input, FormText } from "reactstrap";
 import "./sign.styles.scss";
+import { Control, LocalForm } from "react-redux-form";
 import { GiSlumberingSanctuary } from "react-icons/gi";
-import { AiFillEye, AiFillGithub } from "react-icons/ai";
+import { AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { Login_user } from "../../redux/ActionCreator";
+import Loading from "../Loading";
 
 const SignIn = () => {
+    const dispatch = useDispatch();
     const [statedType, setstatedType] = useState(false);
-    const [ value, setValue ] = useState({username:"", password:""});
-    const [ respo, setRespo ] = useState("")
-    const [ check, setCheck ] = useState(false)
+    const [ load, setLoad ] = useState(false)
+    const [ details, setDetails ] = useState({username: "", password: ""})
     const type = statedType ? 'text' : 'password';
-
-/*     const githubLogin =  async () => {
-        fetch("https://coral-fish-vest.cyclic.app/users/auth/github/login", {
-            headers: {
-                "Access-Control-Allow-Origin": "*"
-            }
-        })
-        .then((resp) => { 
-            console.log(resp); resp.json() })
-        .then((resp) => {
-            console.log(resp);
-            if (resp.success) {
-                localStorage.setItem('token', resp.token);
-            }
-            setRespo({user: resp.success, error: null});
-        }).catch(err => {
-        setRespo({user: false, error: err})})
-    } */
     
-    const postUserDetails = () => {
-        const v = {
-            username: value.username,
-            password: value.password
-        }
-        fetch("https://coral-fish-vest.cyclic.app/users/signin", {
-            method: 'POST',
-            body: JSON.stringify(v),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        .then(resp => resp.json())
-        .then((resp) => {
-            console.log(resp)
-            if (resp.success === true) {
-                localStorage.setItem("token", resp.token);
-                localStorage.setItem("myId", resp.userId)
-                validateProfileInfo(resp.userId);
-            } else {
-                setRespo(resp.err.name + ': ' + resp.err.message)
-                setCheck(!check)
-            }
-        }).catch(err => {
-            setRespo(false)
-        })
-    }
-
-    const validateProfileInfo = (p) => {
-        const bearer = "Bearer " + localStorage.getItem("token");
-        fetch(`https://coral-fish-vest.cyclic.app/upload/${p}`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": bearer
-            }
-        })
-        .then((resp) => resp.json())
-        .then((resp) => {
-            if (resp.success === true) { // authenticate and search if user has filled in the details form, if user details found, redirect to dashboard else redirect to details form page.
-                setRespo(true);
-                localStorage.setItem("userGitHubAcct", resp.status[0].githubname)
-                window.location.assign("https://challenge-umber-six.vercel.app/dashboard")
-            } else {
-                window.location.assign("https://challenge-umber-six.vercel.app/details")
-            }
-        })
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        postUserDetails();
-    }
-    const handleChange = (event) => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-
-        setValue(prev => { 
-            return{
-                ...prev,
-                [name]: value
-            }
-        })
+    const handleSubmit = (values) => {
+        setLoad(true)
+        dispatch(Login_user(values.username, values.password))
+        console.log(values)
     }
 
     return(
@@ -119,26 +47,28 @@ const SignIn = () => {
                         <CardBody className="sign_card_body">
                             <h2>Sign In</h2>
                             <p>Don't have an account? <Link to="/signUp" className="signup_link"> sign up</Link></p>
-                            <Form onSubmit={handleSubmit}>
+                            <LocalForm onSubmit={(values) => handleSubmit(values)}>
                                 <FormGroup className="card_form_group">
-                                    <Input type="text" placeholder="Enter your username" className="input-input" name="username" onChange={handleChange} required />
+                                    <Control.text model=".username" placeholder="Enter your username" className="input-input" name="username" required />
                                 </FormGroup>
                                 <FormGroup className="card_form_group1">
                                     <InputGroup className="i_group" >
-                                        <Input type={type} placeholder="password" className="input-input" onChange={handleChange} name='password' required />
+                                        <Control.text model=".password" type={type} placeholder="password" className="input-input" name='password' required />
                                         <AiFillEye className="eye" onClick={() => setstatedType(prev => !prev)}/>
                                     </InputGroup>
                                 </FormGroup>
                                 <div><FormText><a href="#" className="f_password">Forgot password?</a></FormText></div>
-                                <Button type="submit" value="submit" className="form_submit_btn">Submit</Button>
-                            </Form>
-                            <div className={check ? "errMess" : "hideit"}>{respo}</div>
-                            <div className="line">
+                                <div className="sub_btn">
+                                    <Button type="submit" value="submit" className="form_submit_btn">Submit</Button>
+                                    <div className="loading">
+                                        {load ? <Loading /> : null}
+                                    </div>
+                                </div>
+                            </LocalForm>{/* 
+                            <div className={check ? "errMess" : "hideit"}>{respo}</div> */}
+                           {/*  <div className="line">
                                 <hr style={{width:"50%", marginRight: "4px"}}/> or <hr style={{width:"50%", marginLeft: "4px"}}/>
-                            </div>
-                            <div className="auth-btn" /* onClick={githubLogin} */>
-                                <Button className="git"><AiFillGithub  style={{width: "30px", height: "30px"}} /> Continue with GitHub</Button>
-                            </div>
+                            </div> */}
                             <hr />
                             <div className="c_write">
                                 <p>Protected by recaptcha and subject to the  <span className="c_color">Fenkai Privacy Policy</span> and <span className="c_color">Terms of Service</span>.</p>

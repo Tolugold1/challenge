@@ -5,28 +5,37 @@ import DashboardPage from "./Components/Dashboard/Dashboard";
 import ChallengePage from './Components/Challenges/ChallengePage';
 import PostSchedule from './Components/Post_Scheduler/PostSchedule';
 import Details from './Components/Signup/details';
-import "./App.styles.scss";
+import { Route, useRoutes, BrowserRouter as Router } from "react-router-dom";
 import layout from './Components/layout/layout';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App() {
+
+const App = () => {
+
   const DashboardApp = layout(DashboardPage);
   const ChallengeApp = layout(ChallengePage);
   const PostScheduleApp = layout(PostSchedule);
+
+  const MainRoute = () => {
+    const routes = useRoutes([
+      { path: '/', element: <SignIn /> },
+      {path: '/dashboard', element: <DashboardApp />},
+      {path: '/signin', element: <SignIn />},
+      {path: '/signup', element: <SignUp />},
+      {path: '/details', element: <Details />},
+      {path: '/challenge', element: <ChallengeApp />},
+      {path: '/postschedule', element: <PostScheduleApp />},
+      {path: "*", element: <SignIn />}
+    ])
+
+    return routes
+  }
+
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path='/' element={<SignIn />} />
-          <Route exact path='/dashboard' element={<DashboardApp />} />
-          <Route exact path='/signin' element={<SignIn />} />
-          <Route exact path='/signup' element={<SignUp />} />
-          <Route exact path='/details' element={<Details />} />
-          <Route exact path='/challenge' element={<ChallengeApp />} />
-          <Route exact path='/postschedule' element={<PostScheduleApp />} />
-        </Routes>
-      </Router>
-    </div>
+    <>
+    <Router>
+      <MainRoute />
+    </Router>
+    </>
   );
 }
 
