@@ -70,7 +70,7 @@ const DashboardPage = () => {
         getUserGithubDetails();
         repository();
         const repoName = localStorage.getItem("repository")
-        if (repoName.length !== 0) {
+        if (repoName?.length !== 0) {
             getDailyCommitStat(repoName);
         }
     }, [])
@@ -98,7 +98,7 @@ const DashboardPage = () => {
         labels: PieData.map((data) => data.label),
         datasets: [{
             label: "statistics",
-            data: PieData.map((data) => data.data),
+            data: PieData?.map((data) => data.data),
             backgroundColor: ["#FFC152", "#8BBFFD"],
             borderWidth: 10,
             borderColor: "#F0F0F0",
