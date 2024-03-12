@@ -28,9 +28,9 @@ const Details = () => {
         .then(resp => {
             console.log(resp)
             if (resp.success === true) {
-                window.location.assign("https://challenge-umber-six.vercel.app/signin")
+                window.location.assign("https://challengedeveloper.vercel.app/signin")
              } else {
-                window.location.assign("https://challenge-umber-six.vercel.app/details")
+                window.location.assign("https://challengedeveloper.vercel.app/details")
              }
         })
         .catch(err => console.log(err))
